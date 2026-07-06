@@ -1,25 +1,21 @@
 import { Link } from "react-router-dom";
 
 function CardItem({ card }) {
-  // 'card.link' debe contener el ID del destino (ej: '5') 
-  // para que el Link sepa a qué página navegar.
-  const destinoId = card.link;
+  // Verificamos si existe un link (ID de destino) en la tarjeta
+  const destinoLink = card.link || "#";
 
   return (
-    <Link to={`/${destinoId}`} className="destination-link">
+    <Link to={`/${destinoLink}`} className="destination-link">
       <div className="destination-card">
-        {/* Imagen principal */}
         <img 
           src={card.imagen_url} 
-          alt="Destino" 
+          alt={card.titulo || "Destino"} 
           className="destination-image" 
         />
-        
-        {/* Overlay que contiene el botón */}
         <div className="destination-overlay">
-          <div className="destination-button">
-            Ver más
-          </div>
+          <span className="destination-button">
+            {card.titulo || "Ver más"}
+          </span>
         </div>
       </div>
     </Link>

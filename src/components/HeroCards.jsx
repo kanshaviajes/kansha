@@ -1,66 +1,69 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Pagination } from "swiper/modules";
-import { Link } from "react-router-dom";
-import { supabase } from "../supabase";
-import { getImagenesPorSeccion } from "./ImagenesWebService";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-fade";
 import "swiper/css/pagination";
-import "./HeroSlides.css";
+import "./HeroCards.css";
+import CardItem from "./CardItem"; 
+import { getImagenesPorSeccion } from "./ImagenesWebService";
 
-function HeroSlides() {
-  const [slides, setSlides] = useState([]);
-  const [destinos, setDestinos] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+function HeroCards() {
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      const dataSlides = await getImagenesPorSeccion("hero_slides");
-      setSlides(dataSlides || []);
-      const { data } = await supabase.from("destinos").select("id, nombre");
-      setDestinos(data || []);
-    }
-    fetchData();
+    cargarCards();
   }, []);
 
-  if (slides.length === 0) return null;
+  async function cargarCards() {
+    try {
+      const data = await getImagenesPorSeccion("hero_cards");
+      setCards(data || []);
+    } catch (error) {
+      console.error("Error cargando Hero Cards:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) {
+    return (
+      <section className="hero-cards">
+        <div className="container text-center py-5">
+        </div>
+      </section>
+    );
+  }
+
+  if (cards.length === 0) return null;
 
   return (
-    <section className="hero-slides">
-      <Swiper modules={[Autoplay, EffectFade, Pagination]} effect={"fade"} loop={true} autoplay={{ delay: 4500 }} pagination={{ clickable: true }} className="hero-swiper">
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <div className="hero-slide-inner">
-              <img src={slide.imagen_url} alt={slide.titulo} />
-              <div className="hero-overlay">
-                <div className="container">
-                  <h1 className="hero-title">{slide.titulo}</h1>
-                  <button className="btn btn-outline-light btn-lg rounded-pill px-5" onClick={() => setIsOpen(!isOpen)}>
-                    Explorar ahora
-                  </button>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* MENÚ FLOTANTE (Fixed para que no se corte nunca) */}
-      {isOpen && (
-        <>
-          <div className="dropdown-backdrop" onClick={() => setIsOpen(false)}></div>
-          <div className="dropdown-menu-fixed">
-            {destinos.map(d => (
-              <Link key={d.id} to={`/${d.id}`} className="dropdown-item" onClick={() => setIsOpen(false)}>
-                {d.nombre}
-              </Link>
-            ))}
-          </div>
-        </>
-      )}
+    <section className="hero-cards">
+      <div className="container">
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          grabCursor={true}
+          spaceBetween={25}
+          breakpoints={{
+            0: { slidesPerView: 1.15, spaceBetween: 15 },
+            576: { slidesPerView: 1.6, spaceBetween: 18 },
+            768: { slidesPerView: 2.2, spaceBetween: 20 },
+            992: { slidesPerView: 3, spaceBetween: 22 },
+            1200: { slidesPerView: 4, spaceBetween: 25 },
+            1600: { slidesPerView: 4.5, spaceBetween: 25 },
+          }}
+        >
+          {cards.map((card) => (
+            <SwiperSlide key={card.id}>
+              {/* Pasamos la tarjeta completa al componente hijo */}
+              <CardItem card={card} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
   );
 }
 
-export default HeroSlides;
+export default HeroCards;
