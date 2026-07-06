@@ -1,0 +1,19 @@
+.buscador-container {
+  position: relative;
+  z-index: 10;
+  margin-top: -50px; /* Esto hace que el buscador se superponga al Hero */
+}
+
+.buscador-box {
+  background: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.buscador-box input:focus {
+  box-shadow: none;
+}

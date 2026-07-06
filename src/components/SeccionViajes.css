@@ -1,0 +1,69 @@
+.seccion-viajes {
+  padding: 4rem 0;
+}
+
+.viajes-cinta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Menor espacio entre ellas */
+  max-width: 1100px; /* Un poco más ancho para que parezca banner */
+  margin: 0 auto;
+}
+
+.viaje-item {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Reducido para que sea "fino y largo" */
+  border-radius: 12px; /* Un poco menos redondeado para estilo banner */
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
+}
+
+.viaje-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.viaje-item:hover img {
+  transform: scale(1.03); /* Zoom más sutil para banners */
+}
+
+/* ===========================
+   OVERLAY Y BOTÓN (Estilo Minimalista)
+=========================== */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.15); /* Muy suave */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.viaje-item:hover .overlay {
+  opacity: 1;
+}
+
+.btn-ver-mas {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-texto);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 25px; /* Más compacto */
+  border-radius: 4px; /* Botón rectangular más serio/elegante */
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-ver-mas:hover {
+  background: white;
+  transform: scale(1.05);
+}

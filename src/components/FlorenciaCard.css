@@ -1,0 +1,9 @@
+.florencia-card {
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Un marco sutil */
+    transition: transform 0.3s ease;
+}
+
+/* Opcional: un suave efecto de levitación al pasar el mouse */
+.florencia-card:hover {
+    transform: translateY(-5px);
+}

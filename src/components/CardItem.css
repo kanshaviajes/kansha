@@ -1,0 +1,69 @@
+.destination-link {
+    text-decoration: none;
+    display: block;
+}
+
+.destination-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0 20px 45px rgba(0,0,0,.12);
+    transition: .4s;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    background: #000;
+}
+
+.destination-card:hover {
+    transform: translateY(-8px);
+}
+
+.destination-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .6s;
+}
+
+.destination-card:hover .destination-image {
+    transform: scale(1.08);
+}
+
+.destination-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.15),
+        transparent
+    );
+    opacity: 0;
+    transition: .35s;
+}
+
+.destination-card:hover .destination-overlay {
+    opacity: 1;
+}
+
+.destination-button {
+    background: white;
+    color: #333;
+    padding: .8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: .3s;
+    border: none;
+    cursor: pointer;
+}
+
+.destination-card:hover .destination-button {
+    transform: translateY(-6px);
+}

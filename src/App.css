@@ -1,0 +1,20 @@
+:root {
+  /* Este es un color "Creamy Camel", muy sutil y elegante */
+  --color-fondo: #FDF2D0; 
+  --color-texto: #4a403a; /* Un marrón muy oscuro, más suave que el negro puro */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Opcional: para que los contenedores principales se vean como tarjetas sobre el fondo */
+.container {
+  background-color: transparent; 
+}

@@ -1,6 +1,6 @@
 import { supabase } from "../supabase";
 
-/*LISTAR POR SECCIÓN */
+/* LISTAR POR SECCIÓN */
 export async function getImagenesPorSeccion(seccion) {
   const { data, error } = await supabase
     .from("imagenes_web")
@@ -16,7 +16,7 @@ export async function getImagenesPorSeccion(seccion) {
   return data;
 }
 
-/*LISTAR POR DESTINO (SLIDES)*/
+/* LISTAR POR DESTINO (SLIDES) */
 export async function getImagenesPorDestino(titulo) {
   const { data, error } = await supabase
     .from("imagenes_web")
@@ -34,7 +34,25 @@ export async function getImagenesPorDestino(titulo) {
   return data;
 }
 
-/*   CREAR IMAGEN */
+/* LISTAR TODOS LOS SLIDES (SIN REPETIDOS) */
+export async function getSlides() {
+  const { data, error } = await supabase
+    .from("imagenes_web")
+    .select("titulo")
+    .eq("seccion", "destino_slides")
+    .eq("activo", true)
+    .order("titulo", { ascending: true });
+
+  if (error) {
+    console.error("Error getSlides:", error);
+    return [];
+  }
+
+  // Devuelve solo títulos únicos
+  return [...new Set(data.map((item) => item.titulo))];
+}
+
+/* CREAR IMAGEN */
 export async function crearImagen(payload) {
   const { data, error } = await supabase
     .from("imagenes_web")
@@ -65,7 +83,7 @@ export async function actualizarImagen(id, payload) {
   return data;
 }
 
-/*   ELIMINAR IMAGEN */
+/* ELIMINAR IMAGEN */
 export async function eliminarImagen(id) {
   const { error } = await supabase
     .from("imagenes_web")
@@ -80,7 +98,7 @@ export async function eliminarImagen(id) {
   return true;
 }
 
-/*SUBIR IMAGEN A STORAGE */
+/* SUBIR IMAGEN A STORAGE */
 export async function subirImagen(file) {
   const fileName = `${Date.now()}-${file.name}`;
 
