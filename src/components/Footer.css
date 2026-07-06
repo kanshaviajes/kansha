@@ -115,3 +115,44 @@
 }
 
 }
+.footer-grid {
+  display: grid;
+  /* Cambiamos de 3 columnas a 4 */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
+  align-items: center;
+}
+
+/* Si en móvil se rompe, forzamos que sea una sola columna */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important; /* Fuerza 4 columnas */
+  gap: 15px;
+  align-items: center;
+}
+
+.footer-converter-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+/* Esto hace que el footer se adapte automáticamente */
+@media (max-width: 900px) {
+  .footer-grid {
+    /* En móviles, obligamos a que todo se apile en una sola columna */
+    grid-template-columns: 1fr !important;
+    gap: 30px; /* Más espacio entre elementos en vertical */
+    text-align: center;
+  }
+
+  /* Ajustamos el conversor para que no sea muy ancho en celular */
+  .footer-converter-wrapper {
+    max-width: 300px;
+    margin: 0 auto; /* Centra el cuadrito */
+  }
+}

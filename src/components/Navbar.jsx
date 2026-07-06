@@ -44,8 +44,8 @@ function Navbar() {
   };
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg custom-navbar sticky-top">
+    <><nav className="navbar navbar-expand-lg custom-navbar">
+      
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src="/logo.png" alt="Logo" className="navbar-logo" />
