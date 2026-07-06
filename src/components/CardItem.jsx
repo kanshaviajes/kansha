@@ -5,7 +5,8 @@ function CardItem({ card }) {
   const destinoLink = card.link || "#";
 
   return (
-    <Link to={`/${destinoLink}`} className="destination-link">
+    // CAMBIO REALIZADO: Agregamos '/destino/' al path para coincidir con App.js
+    <Link to={`/destino/${destinoLink}`} className="destination-link">
       <div className="destination-card">
         <img 
           src={card.imagen_url} 

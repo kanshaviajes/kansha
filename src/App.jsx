@@ -1,27 +1,38 @@
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import "./App.css"
-import { Routes, Route } from "react-router-dom";
+import WhatsAppButton from "./components/WhatsAppButton"; // Importamos el botón flotante
+import "./App.css";
 
+// Páginas
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
-import PageDestino from "./pages/PageDestino"; // Importamos la nueva página dinámica
+import PageDestino from "./pages/PageDestino";
 
 function App() {
   return (
     <>
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />} />
-        {/* Ruta dinámica que captura el ID del destino */}
-        <Route path="/:id" element={<PageDestino />} /> 
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<Admin />} />
+          
+          {/* Ruta dinámica con prefijo 'destino'. 
+            Ahora tus enlaces serán '/destino/1', '/destino/2', etc. 
+            Esto evita conflictos con futuras páginas.
+          */}
+          <Route path="/destino/:id" element={<PageDestino />} /> 
+        </Routes>
+      </main>
 
       <Footer />
+      
+      {/* Botón flotante siempre visible */}
+      <WhatsAppButton />
     </>
   );
 }

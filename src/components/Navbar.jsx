@@ -34,7 +34,8 @@ function Navbar() {
               <ul className="dropdown-menu shadow-lg rounded-4">
                 {destinos.map((d) => (
                   <li key={d.id}>
-                    <Link className="dropdown-item" to={`/${d.id}`}>
+                    {/* CAMBIO REALIZADO: Agregamos '/destino/' al path */}
+                    <Link className="dropdown-item" to={`/destino/${d.id}`}>
                       <span className="destino-nombre">{d.nombre}</span>
                     </Link>
                   </li>

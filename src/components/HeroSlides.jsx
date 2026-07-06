@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // Importamos Link
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -32,14 +33,17 @@ function HeroSlides() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="hero-slide-inner">
-              <img src={slide.imagen_url} alt={slide.titulo || "Viaje"} />
-              <div className="hero-overlay">
-                <div className="container">
-                  <h1 className="hero-title">{slide.titulo}</h1>
+            {/* Agregamos el Link aquí para que toda la slide sea clickeable */}
+            <Link to={`/destino/${slide.link}`} className="hero-slide-link">
+              <div className="hero-slide-inner">
+                <img src={slide.imagen_url} alt={slide.titulo || "Viaje"} />
+                <div className="hero-overlay">
+                  <div className="container">
+                    <h1 className="hero-title">{slide.titulo}</h1>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

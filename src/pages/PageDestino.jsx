@@ -9,17 +9,25 @@ function PageDestino() {
 
   useEffect(() => {
     async function fetchDestino() {
+      // Forzamos el ID a número por si acaso, y quitamos el .single() 
+      // para mayor seguridad en la lectura de datos
+      const numericId = parseInt(id);
+      
       const { data, error } = await supabase
         .from("destinos")
         .select("*")
-        .eq("id", id)
-        .single();
+        .eq("id", numericId);
       
-      if (!error) setDestino(data);
+      if (error) {
+        console.error("Error en Supabase:", error);
+      } else if (data && data.length > 0) {
+        setDestino(data[0]);
+      }
     }
     fetchDestino();
   }, [id]);
 
+  // Si no hay destino, mostramos el estado de carga
   if (!destino) return <div className="text-center py-5">Cargando detalles...</div>;
 
   // Lógica para el formato de moneda
@@ -27,7 +35,7 @@ function PageDestino() {
   
   // Mensaje personalizado para WhatsApp
   const mensajeWpp = `Hola! Quiero información sobre el viaje a ${destino.nombre} de ${destino.noches} noches.`;
-  const whatsappLink = `https://wa.me/TU_NUMERO?text=${encodeURIComponent(mensajeWpp)}`;
+  const whatsappLink = `https://wa.me/59891846311?text=${encodeURIComponent(mensajeWpp)}`;
 
   return (
     <div className="page-destino">

@@ -25,10 +25,10 @@ function SeccionViajes() {
             return (
               <div key={item.id} className="viaje-item-wrapper">
                 {destinoId ? (
-                  <Link to={`/${destinoId}`} className="viaje-item">
+                  // CAMBIO REALIZADO: Agregamos '/destino/' al path
+                  <Link to={`/destino/${destinoId}`} className="viaje-item">
                     <img src={item.imagen_url} alt="Viaje" />
                     <div className="overlay"></div> 
-                    {/* El botón se eliminó. El overlay se mantiene para el efecto visual de oscurecimiento */}
                   </Link>
                 ) : (
                   <div className="viaje-item">

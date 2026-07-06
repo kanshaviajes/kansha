@@ -17,7 +17,7 @@ function OfertasAereas() {
   return (
     <section className="py-5">
       <div className="container">
-        <h3 className="mb-4 text-center">Ofertas Aéreas Especiales</h3>
+        <h3 className="mb-4 text-center">Septiembre Increíble</h3>
         <div className="row g-4">
           {ofertas.map((oferta) => (
             <div className="col-md-4" key={oferta.id}>
