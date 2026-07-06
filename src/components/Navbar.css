@@ -1,116 +1,68 @@
-/* ===========================
-   NAVBAR - Estilo Moderno y Limpio
-=========================== */
+/* Estilo general del Navbar */
 .custom-navbar {
-    background: #FFFEFA;
-    position: relative;
-    width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 0.5rem 0;
-    z-index: 999;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* ===========================
-   LOGO - Protagonista
-=========================== */
 .navbar-logo {
-    height: 100px;
-    width: auto;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+  height: 150px; /* Ajusta según el tamaño de tu logo */
+  transition: transform 0.3s ease;
 }
 
 .navbar-logo:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-/* ===========================
-   LINKS - Limpieza visual
-=========================== */
-.navbar-nav { gap: 1.5rem; align-items: center; }
-
-.nav-link {
-    color: #333 !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.5px;
-    padding: 0.5rem 0.8rem !important;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    cursor: pointer;
+/* Estilo del Modal tipo App/SweetAlert */
+.modal-content {
+  border-radius: 24px !important;
+  overflow: hidden;
+  border: none;
 }
 
-.nav-link:hover {
-    color: var(--accent) !important;
+.modal-header {
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
 }
 
-/* ===========================
-   DROPDOWN - Estilo Tarjeta Elegante (Solo Clic)
-=========================== */
-.nav-item.dropdown {
-    position: static;
+/* Estilo de la lista de destinos dentro del modal */
+.list-group-item {
+  border: none !important;
+  transition: all 0.3s ease;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
 }
 
-.dropdown-menu {
-    border: none;
-    border-radius: 12px; /* Más cerrado para que se vea compacto */
-    padding: 0.5rem;
-    margin-top: 10px !important;
-    background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Sombra más suave */
-    animation: dropdownFade .2s ease;
-    
-    position: absolute !important;
-    right: 0 !important; /* Alineado a la derecha del botón */
-    left: auto !important; 
-    min-width: 180px; /* Mucho más discreto */
-    max-width: 220px;
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+  padding-left: 2rem; /* Efecto de desplazamiento al pasar el mouse */
 }
 
-.dropdown-item {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    color: #444;
+/* Iconos dentro de la lista */
+.list-group-item i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 }
 
-.dropdown-item:hover {
-    background: #FFFEFA;
-    color: #000;
-    padding-left: 1.2rem; /* Movimiento sutil */
+.list-group-item:hover i {
+  transform: translateX(5px); /* Pequeño movimiento al pasar el mouse */
 }
 
-.destino-nombre { 
-    font-weight: 500; /* Menos negrita, más elegante */
+/* Scrollbar personalizado para el modal (si hay muchos destinos) */
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
-/* ===========================
-   ANIMACIÓN Y MOBILE
-=========================== */
-@keyframes dropdownFade {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+.modal-body::-webkit-scrollbar {
+  width: 6px;
 }
 
-@media (max-width:991px) {
-    .navbar-logo { height: 70px; }
-    
-    .navbar-collapse {
-        margin-top: 1rem;
-        background: #fff;
-        border-radius: 25px;
-        padding: 2rem;
-        border: 1px solid #eee;
-    }
-    
-    .dropdown-menu {
-        position: relative !important;
-        right: auto;
-        width: 100%;
-        box-shadow: none;
-        background: transparent;
-    }
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: #dee2e6;
+  border-radius: 10px;
 }
-
-/* Nota: Se eliminó el bloque .dropdown:hover para evitar conflicto con el clic */
