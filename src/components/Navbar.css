@@ -8,11 +8,30 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+
 .navbar-logo {
-  height: 150px; /* Ajusta según el tamaño de tu logo */
-  transition: transform 0.3s ease;
+  /* 1. Definimos el alto que quieres que tenga el logo VISIBLE */
+  height: 200px; 
+  width: auto;
+  
+  /* 2. El truco: márgenes negativos para "recortar" el borde transparente */
+  /* Ajusta los números (ej. -10px, -15px) hasta que el logo se vea del tamaño que quieres */
+  margin-top: 25px; 
+  margin-bottom: -15px;
+  
+  /* 3. Aseguramos que la imagen no se deforme */
+  object-fit: contain;
 }
 
+.navbar-brand {
+  /* 4. Evitamos que el link fuerce al Navbar a crecer */
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+  /* Si el Navbar sigue siendo muy alto, fuerza su altura aquí: */
+  height: 60px; 
+  overflow: visible; /* Permite que el logo "se salga" de la caja si es necesario */
+}
 .navbar-logo:hover {
   transform: scale(1.05);
 }

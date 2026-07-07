@@ -1,99 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { supabase } from "../supabase";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
-  // 🔐 SI YA ESTÁ LOGUEADA, ENTRA DIRECTO
   useEffect(() => {
-    checkUser();
+    // 1. Al cargar este componente, lanzamos el SweetAlert inmediatamente
+    abrirLoginSweet();
   }, []);
 
-  async function checkUser() {
-    const { data } = await supabase.auth.getSession();
-
-    if (data.session) {
-      navigate("/admin");
-    }
-  }
-
-  async function handleLogin(e) {
-    e.preventDefault();
-
-    if (loading) return;
-
-    setLoading(true);
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setLoading(false);
-
-      Swal.fire({
-        icon: "error",
-        title: "Error de acceso",
-        text: "Usuario o contraseña incorrectos",
-      });
-
-      return;
-    }
-
+  const abrirLoginSweet = () => {
     Swal.fire({
-      icon: "success",
-      title: "Bienvenida Florencia 💖",
-      text: "Acceso correcto al panel",
-      timer: 1200,
-      showConfirmButton: false,
+      title: "Acceso Admin",
+      html: `
+        <input type="email" id="email" class="swal2-input" placeholder="Email">
+        <input type="password" id="password" class="swal2-input" placeholder="Contraseña">
+      `,
+      confirmButtonText: "Entrar",
+      confirmButtonColor: "#1a5a3a",
+      focusConfirm: false,
+      preConfirm: async () => {
+        const email = Swal.getPopup().querySelector("#email").value;
+        const password = Swal.getPopup().querySelector("#password").value;
+        
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+          Swal.showValidationMessage(`Error: ${error.message}`);
+        }
+        return { email };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: "success",
+          title: "Bienvenida Florencia 💖",
+          timer: 1200,
+          showConfirmButton: false,
+        }).then(() => {
+          navigate("/admin");
+        });
+      } else {
+        // Si el usuario cancela (apreta fuera o en cancelar), lo mandamos al inicio
+        navigate("/");
+      }
     });
+  };
 
-    setTimeout(() => {
-      navigate("/admin");
-    }, 1200);
-  }
-
-  return (
-    <div className="container py-5">
-
-      <h2 className="mb-4">Login Admin</h2>
-
-      <form onSubmit={handleLogin}>
-
-        <input
-          type="email"
-          className="form-control mb-3"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
-          type="password"
-          className="form-control mb-3"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button
-          className="btn btn-primary w-100"
-          disabled={loading}
-        >
-          {loading ? "Ingresando..." : "Entrar"}
-        </button>
-
-      </form>
-
-    </div>
-  );
+  // 2. Retornamos null porque no queremos que se vea nada en pantalla, 
+  // solo queremos que aparezca el SweetAlert que lanzamos en el useEffect
+  return null;
 }
 
 export default Login;
