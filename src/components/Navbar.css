@@ -9,79 +9,249 @@
 }
 
 
+/* Logo */
+
 .navbar-logo {
-  /* 1. Definimos el alto que quieres que tenga el logo VISIBLE */
-  height: 200px; 
+
+  height: 200px;
   width: auto;
-  
-  /* 2. El truco: márgenes negativos para "recortar" el borde transparente */
-  /* Ajusta los números (ej. -10px, -15px) hasta que el logo se vea del tamaño que quieres */
-  margin-top: 25px; 
+
+  margin-top: 25px;
   margin-bottom: -15px;
-  
-  /* 3. Aseguramos que la imagen no se deforme */
+
   object-fit: contain;
+
+  transition: transform .3s ease;
 }
+
+
+.navbar-logo:hover {
+
+  transform: scale(1.05);
+
+}
+
+
 
 .navbar-brand {
-  /* 4. Evitamos que el link fuerce al Navbar a crecer */
+
   display: flex;
   align-items: center;
+
   padding: 0 !important;
-  /* Si el Navbar sigue siendo muy alto, fuerza su altura aquí: */
-  height: 60px; 
-  overflow: visible; /* Permite que el logo "se salga" de la caja si es necesario */
-}
-.navbar-logo:hover {
-  transform: scale(1.05);
+
+  height: 60px;
+
+  overflow: visible;
+
 }
 
-/* Estilo del Modal tipo App/SweetAlert */
-.modal-content {
-  border-radius: 24px !important;
-  overflow: hidden;
-  border: none;
+
+
+
+
+/* Contenedor de botones derecha */
+
+.navbar-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
 }
+
+
+
+/* Usuario logueado */
+
+.navbar-user {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: .85rem;
+
+  white-space: nowrap;
+
+}
+
+
+
+.navbar-user span {
+
+  color: #6c757d;
+
+}
+
+
+
+.navbar-user button {
+
+  font-size: .75rem;
+
+  padding: 4px 12px;
+
+}
+
+
+
+
+/* Botón destinos */
+
+.navbar-actions .btn-primary {
+
+  white-space: nowrap;
+
+}
+
+
+
+
+
+
+/* Modal */
+
+.modal-content {
+
+  border-radius: 24px !important;
+
+  overflow: hidden;
+
+  border: none;
+
+}
+
+
 
 .modal-header {
+
   padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+
 }
 
-/* Estilo de la lista de destinos dentro del modal */
+
+
+
+
+/* Lista destinos */
+
 .list-group-item {
+
   border: none !important;
+
   transition: all 0.3s ease;
+
   padding: 1rem 1.5rem;
+
   font-size: 1.1rem;
+
 }
+
+
 
 .list-group-item:hover {
+
   background-color: #f8f9fa;
+
   color: #0d6efd;
-  padding-left: 2rem; /* Efecto de desplazamiento al pasar el mouse */
+
+  padding-left: 2rem;
+
 }
 
-/* Iconos dentro de la lista */
+
+
 .list-group-item i {
+
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
+
+  transition: transform .3s ease;
+
 }
+
+
 
 .list-group-item:hover i {
-  transform: translateX(5px); /* Pequeño movimiento al pasar el mouse */
+
+  transform: translateX(5px);
+
 }
 
-/* Scrollbar personalizado para el modal (si hay muchos destinos) */
+
+
+
+
+/* Scroll modal */
+
 .modal-body {
+
   max-height: 60vh;
+
   overflow-y: auto;
+
 }
+
+
 
 .modal-body::-webkit-scrollbar {
+
   width: 6px;
+
 }
 
+
 .modal-body::-webkit-scrollbar-thumb {
+
   background-color: #dee2e6;
+
   border-radius: 10px;
+
+}
+
+
+
+
+
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+
+  .custom-navbar {
+
+    padding: .7rem 0;
+
+  }
+
+
+  .navbar-logo {
+
+    height: 140px;
+
+    margin-top: 15px;
+
+  }
+
+
+  .navbar-user span {
+
+    display: none;
+
+  }
+
+
+  .navbar-user button {
+
+    padding: 3px 10px;
+
+  }
+
+
 }
