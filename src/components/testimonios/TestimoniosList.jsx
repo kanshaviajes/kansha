@@ -1,6 +1,6 @@
 import TestimonioCard from "./TestimonioCard";
 
-function TestimoniosList({ testimonios, loading }) {
+function TestimoniosList({ testimonios, loading, esAdmin }) {
 
     if (loading) {
         return (
@@ -46,6 +46,7 @@ function TestimoniosList({ testimonios, loading }) {
 
                     <TestimonioCard
                         testimonio={testimonio}
+                        esAdmin={esAdmin}
                     />
 
                 </div>

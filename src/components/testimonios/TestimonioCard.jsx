@@ -1,7 +1,7 @@
 import { supabase } from "../../supabase";
 import Swal from "sweetalert2";
 
-function TestimonioCard({ testimonio, onEliminar }) {
+function TestimonioCard({ testimonio, onEliminar, esAdmin }) {
 
 
     const borrarTestimonio = async () => {
@@ -108,6 +108,7 @@ function TestimonioCard({ testimonio, onEliminar }) {
 
 
 
+
                 <p className="testimonio-comentario">
 
                     "{testimonio.comentario}"
@@ -142,14 +143,19 @@ function TestimonioCard({ testimonio, onEliminar }) {
 
 
 
-                    <button
-                        className="btn btn-danger btn-sm"
-                        onClick={borrarTestimonio}
-                    >
 
-                        🗑️
+                    {esAdmin && (
 
-                    </button>
+                        <button
+                            className="btn btn-danger btn-sm"
+                            onClick={borrarTestimonio}
+                        >
+
+                            🗑️
+
+                        </button>
+
+                    )}
 
 
 
