@@ -33,7 +33,7 @@ function FlorenciaCard() {
               como si fuera propio.
             </p>
             <p className="text-muted mb-0">
-              Con más de años de experiencia en el rubro, mi objetivo es simple:
+              Con muchos años de experiencia en el rubro, mi objetivo es simple:
               que cada persona viva el viaje de su vida.
             </p>
           </div>
