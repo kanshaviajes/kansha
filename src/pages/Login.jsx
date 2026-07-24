@@ -7,8 +7,20 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    abrirLoginSweet();
+    verificarSesion();
   }, []);
+
+  // Verifica si ya hay una sesión iniciada
+  const verificarSesion = async () => {
+    const { data } = await supabase.auth.getSession();
+
+    if (data.session) {
+      navigate("/admin", { replace: true });
+      return;
+    }
+
+    abrirLoginSweet();
+  };
 
   const abrirLoginSweet = () => {
     Swal.fire({
@@ -88,10 +100,10 @@ function Login() {
           timer: 1200,
           showConfirmButton: false,
         }).then(() => {
-          navigate("/admin");
+          navigate("/admin", { replace: true });
         });
       } else {
-        navigate("/");
+        navigate("/", { replace: true });
       }
     });
   };
