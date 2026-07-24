@@ -7,7 +7,6 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. Al cargar este componente, lanzamos el SweetAlert inmediatamente
     abrirLoginSweet();
   }, []);
 
@@ -15,21 +14,35 @@ function Login() {
     Swal.fire({
       title: "Acceso Admin",
       html: `
-        <input type="email" id="email" class="swal2-input" placeholder="Email">
+        <input type="text" id="usuario" class="swal2-input" placeholder="Usuario">
         <input type="password" id="password" class="swal2-input" placeholder="Contraseña">
       `,
       confirmButtonText: "Entrar",
       confirmButtonColor: "#1a5a3a",
       focusConfirm: false,
+
       preConfirm: async () => {
-        const email = Swal.getPopup().querySelector("#email").value;
+        const usuario = Swal.getPopup().querySelector("#usuario").value.trim().toLowerCase();
         const password = Swal.getPopup().querySelector("#password").value;
-        
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) {
-          Swal.showValidationMessage(`Error: ${error.message}`);
+
+        // Validamos el usuario
+        if (usuario !== "florencia") {
+          Swal.showValidationMessage("Usuario incorrecto");
+          return false;
         }
-        return { email };
+
+        // Iniciamos sesión con el email real (oculto para el usuario)
+        const { error } = await supabase.auth.signInWithPassword({
+          email: "admin@kansha.com",
+          password,
+        });
+
+        if (error) {
+          Swal.showValidationMessage("Contraseña incorrecta");
+          return false;
+        }
+
+        return true;
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -42,14 +55,11 @@ function Login() {
           navigate("/admin");
         });
       } else {
-        // Si el usuario cancela (apreta fuera o en cancelar), lo mandamos al inicio
         navigate("/");
       }
     });
   };
 
-  // 2. Retornamos null porque no queremos que se vea nada en pantalla, 
-  // solo queremos que aparezca el SweetAlert que lanzamos en el useEffect
   return null;
 }
 
