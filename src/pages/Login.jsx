@@ -15,23 +15,59 @@ function Login() {
       title: "Acceso Admin",
       html: `
         <input type="text" id="usuario" class="swal2-input" placeholder="Usuario">
-        <input type="password" id="password" class="swal2-input" placeholder="Contraseña">
+
+        <div style="position:relative; width:100%;">
+          <input
+            type="password"
+            id="password"
+            class="swal2-input"
+            placeholder="Contraseña"
+            style="padding-right:45px; margin:0;"
+          >
+          <span
+            id="togglePassword"
+            style="
+              position:absolute;
+              right:15px;
+              top:50%;
+              transform:translateY(-50%);
+              cursor:pointer;
+              font-size:20px;
+              user-select:none;
+            "
+          >
+            👁️
+          </span>
+        </div>
       `,
       confirmButtonText: "Entrar",
       confirmButtonColor: "#1a5a3a",
       focusConfirm: false,
 
+      didOpen: () => {
+        const passwordInput = Swal.getPopup().querySelector("#password");
+        const toggle = Swal.getPopup().querySelector("#togglePassword");
+
+        toggle.addEventListener("click", () => {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggle.textContent = "🙈";
+          } else {
+            passwordInput.type = "password";
+            toggle.textContent = "👁️";
+          }
+        });
+      },
+
       preConfirm: async () => {
         const usuario = Swal.getPopup().querySelector("#usuario").value.trim().toLowerCase();
         const password = Swal.getPopup().querySelector("#password").value;
 
-        // Validamos el usuario
         if (usuario !== "florencia") {
           Swal.showValidationMessage("Usuario incorrecto");
           return false;
         }
 
-        // Iniciamos sesión con el email real (oculto para el usuario)
         const { error } = await supabase.auth.signInWithPassword({
           email: "admin@kansha.com",
           password,
