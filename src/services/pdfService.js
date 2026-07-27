@@ -13,7 +13,14 @@ export async function generarPDF(elemento, numeroRecibo = "RECIBO") {
 
     });
 
+
     const imgData = canvas.toDataURL("image/png");
+
+
+    const pdfWidth = 210; // ancho tipo A4
+
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
 
     const pdf = new jsPDF({
 
@@ -21,13 +28,10 @@ export async function generarPDF(elemento, numeroRecibo = "RECIBO") {
 
         unit: "mm",
 
-        format: "a4"
+        format: [pdfWidth, pdfHeight]
 
     });
 
-    const pdfWidth = 210;
-
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
     pdf.addImage(
 
@@ -44,6 +48,7 @@ export async function generarPDF(elemento, numeroRecibo = "RECIBO") {
         pdfHeight
 
     );
+
 
     pdf.save(`${numeroRecibo}.pdf`);
 

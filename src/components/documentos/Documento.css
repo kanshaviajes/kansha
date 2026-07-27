@@ -16,6 +16,7 @@ body{
 
 }
 
+
 /* =======================================================
    PAGE
 ======================================================= */
@@ -37,6 +38,7 @@ body{
     background:#eef1f5;
 
 }
+
 
 /* =======================================================
    PANEL
@@ -60,6 +62,7 @@ body{
 
 }
 
+
 .panel-documento h2{
 
     margin-bottom:25px;
@@ -69,6 +72,7 @@ body{
     font-size:25px;
 
 }
+
 
 .grupo{
 
@@ -80,6 +84,7 @@ body{
 
 }
 
+
 .grupo label{
 
     margin-bottom:6px;
@@ -89,6 +94,7 @@ body{
     color:#555;
 
 }
+
 
 .grupo input,
 .grupo textarea,
@@ -102,9 +108,8 @@ body{
 
     font-size:15px;
 
-    transition:.2s;
-
 }
+
 
 .grupo input:focus,
 .grupo textarea:focus,
@@ -118,6 +123,8 @@ body{
 
 }
 
+
+
 .resumen-panel{
 
     margin-top:25px;
@@ -130,11 +137,14 @@ body{
 
 }
 
+
 .resumen-panel p{
 
     margin-bottom:8px;
 
 }
+
+
 
 .btn-guardar{
 
@@ -158,21 +168,21 @@ body{
 
     font-weight:700;
 
-    transition:.25s;
-
 }
 
-.btn-guardar:hover{
 
-    transform:translateY(-2px);
+.btn-guardar:hover{
 
     background:#157347;
 
 }
 
+
+
 /* =======================================================
    PREVIEW
 ======================================================= */
+
 
 .preview-container{
 
@@ -186,9 +196,12 @@ body{
 
 }
 
+
+
 /* =======================================================
    A4
 ======================================================= */
+
 
 .a4{
 
@@ -196,9 +209,11 @@ body{
 
     min-height:297mm;
 
+    height:auto;
+
     background:white;
 
-    padding:22mm 22mm 65mm 22mm;
+    padding:22mm 22mm 40mm 22mm;
 
     border-radius:10px;
 
@@ -209,9 +224,12 @@ body{
 
 }
 
+
+
 /* =======================================================
    HEADER
 ======================================================= */
+
 
 .recibo-header{
 
@@ -225,6 +243,7 @@ body{
 
 }
 
+
 .empresa h2{
 
     color:#1d3557;
@@ -233,6 +252,7 @@ body{
 
 }
 
+
 .empresa span{
 
     color:#777;
@@ -240,6 +260,7 @@ body{
     font-size:15px;
 
 }
+
 
 .logo{
 
@@ -253,6 +274,7 @@ body{
 
 }
 
+
 .logo-img{
 
     width:170px;
@@ -261,9 +283,12 @@ body{
 
 }
 
+
+
 /* =======================================================
    TITULO
 ======================================================= */
+
 
 .titulo{
 
@@ -277,6 +302,7 @@ body{
 
 }
 
+
 .titulo h1{
 
     color:#1d3557;
@@ -284,6 +310,7 @@ body{
     font-size:36px;
 
 }
+
 
 .numero{
 
@@ -293,9 +320,12 @@ body{
 
 }
 
+
+
 /* =======================================================
    INFO
 ======================================================= */
+
 
 .info{
 
@@ -309,6 +339,7 @@ body{
 
 }
 
+
 .info strong{
 
     display:block;
@@ -319,15 +350,19 @@ body{
 
 }
 
+
 .info p{
 
     font-size:17px;
 
 }
 
+
+
 /* =======================================================
    DETALLE
 ======================================================= */
+
 
 .detalle{
 
@@ -337,11 +372,13 @@ body{
 
 }
 
+
 .detalle p{
 
     font-size:17px;
 
 }
+
 
 .detalle h2{
 
@@ -353,9 +390,12 @@ body{
 
 }
 
+
+
 /* =======================================================
    RESUMEN
 ======================================================= */
+
 
 .resumen{
 
@@ -367,6 +407,7 @@ body{
 
 }
 
+
 .resumen div{
 
     display:flex;
@@ -377,11 +418,13 @@ body{
 
 }
 
+
 .resumen div:last-child{
 
     margin-bottom:0;
 
 }
+
 
 .resumen strong{
 
@@ -389,15 +432,19 @@ body{
 
 }
 
+
+
 /* =======================================================
    OBSERVACIONES
 ======================================================= */
+
 
 .observaciones{
 
     margin-top:35px;
 
 }
+
 
 .observaciones strong{
 
@@ -406,6 +453,7 @@ body{
     margin-bottom:10px;
 
 }
+
 
 .observaciones p{
 
@@ -419,23 +467,25 @@ body{
 
 }
 
+
+
 /* =======================================================
    FIRMA
 ======================================================= */
 
+
 .firma{
 
-    position:absolute;
-
-    right:22mm;
-
-    bottom:25mm;
+    margin-top:60px;
 
     width:260px;
+
+    margin-left:auto;
 
     text-align:center;
 
 }
+
 
 .firma-img{
 
@@ -447,6 +497,7 @@ body{
 
 }
 
+
 .linea{
 
     width:100%;
@@ -457,6 +508,7 @@ body{
 
 }
 
+
 .firma h4{
 
     color:#1d3557;
@@ -465,11 +517,13 @@ body{
 
 }
 
+
 .firma p{
 
     margin-bottom:4px;
 
 }
+
 
 .firma small{
 
@@ -477,9 +531,12 @@ body{
 
 }
 
+
+
 /* =======================================================
    RESPONSIVE
 ======================================================= */
+
 
 @media(max-width:1200px){
 
@@ -489,13 +546,13 @@ body{
 
 }
 
+
 .panel-documento{
 
     position:relative;
 
-    top:auto;
-
 }
+
 
 .preview-container{
 
@@ -507,6 +564,8 @@ body{
 
 }
 
+
+
 @media(max-width:768px){
 
 .documentos-page{
@@ -514,6 +573,7 @@ body{
     padding:15px;
 
 }
+
 
 .a4{
 
