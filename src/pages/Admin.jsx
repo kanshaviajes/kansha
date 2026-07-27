@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import HeroEdit from "../components/HeroEdit";
@@ -10,6 +11,14 @@ function Admin() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  }, []);
+
   return (
     <div className="container py-5">
 
@@ -17,6 +26,7 @@ function Admin() {
 
         <div>
           <h2 className="mb-1">Panel de Administración 🛠️</h2>
+
           <p className="text-muted mb-0">
             Utiliza este panel para gestionar todo el contenido de la web.
           </p>
@@ -31,22 +41,36 @@ function Admin() {
 
       </div>
 
-      {/* NUEVA SECCIÓN MAESTRA */}
+      {/* GESTIÓN DE DESTINOS */}
+
       <section className="mb-5 border p-4 bg-light rounded">
-        <h3 className="text-primary">Gestión de Destinos (Nuevo)</h3>
+
+        <h3 className="text-primary">
+          Gestión de Destinos
+        </h3>
+
         <GestionDestinos />
+
       </section>
 
       <hr className="my-5" />
 
-      {/* SECCIONES EXISTENTES */}
+      {/* RESTO DEL PANEL */}
+
       <div className="row">
+
         <div className="col-12">
+
           <HeroEdit />
+
           <CardItemEdit />
+
           <SeccionViajesEdit />
+
           <OfertasAereasEdit />
+
         </div>
+
       </div>
 
     </div>
