@@ -2,11 +2,14 @@
    KANSHA DOCUMENT MANAGER
 ======================================================= */
 
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
+
+
 
 body{
 
@@ -17,9 +20,11 @@ body{
 }
 
 
+
 /* =======================================================
    PAGE
 ======================================================= */
+
 
 .documentos-page{
 
@@ -40,19 +45,22 @@ body{
 }
 
 
+
 /* =======================================================
    PANEL
 ======================================================= */
+
 
 .panel-documento{
 
     background:white;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    padding:28px;
+    padding:30px;
 
-    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.10);
 
     position:sticky;
 
@@ -63,9 +71,11 @@ body{
 }
 
 
+
+
 .panel-documento h2{
 
-    margin-bottom:25px;
+    margin-bottom:28px;
 
     color:#1d3557;
 
@@ -74,20 +84,24 @@ body{
 }
 
 
+
+
 .grupo{
 
     display:flex;
 
     flex-direction:column;
 
-    margin-bottom:18px;
+    margin-bottom:22px;
 
 }
 
 
+
+
 .grupo label{
 
-    margin-bottom:6px;
+    margin-bottom:7px;
 
     font-weight:600;
 
@@ -96,67 +110,102 @@ body{
 }
 
 
+
+
 .grupo input,
 .grupo textarea,
 .grupo select{
 
+
     border:1px solid #d9dde3;
 
-    border-radius:10px;
+    border-radius:12px;
 
-    padding:11px 13px;
+    padding:12px 14px;
 
     font-size:15px;
 
+    transition:.2s;
+
+
 }
+
 
 
 .grupo input:focus,
 .grupo textarea:focus,
 .grupo select:focus{
 
+
     outline:none;
 
     border-color:#0d6efd;
 
-    box-shadow:0 0 0 4px rgba(13,110,253,.08);
+    box-shadow:
+    0 0 0 4px rgba(13,110,253,.08);
+
 
 }
+
 
 
 
 .resumen-panel{
 
-    margin-top:25px;
+
+    margin-top:30px;
 
     background:#f6f8fa;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    padding:18px;
+    padding:20px;
+
+    border:1px solid #e5e8ec;
+
 
 }
+
+
+
+
+.resumen-panel h4{
+
+    margin-bottom:15px;
+
+    color:#1d3557;
+
+}
+
 
 
 .resumen-panel p{
 
-    margin-bottom:8px;
+    margin-bottom:10px;
 
 }
 
 
 
+
+
+/* =======================================================
+   BUTTON
+======================================================= */
+
+
 .btn-guardar{
+
 
     width:100%;
 
     border:none;
 
-    margin-top:20px;
+    margin-top:35px;
 
-    padding:14px;
+    padding:16px;
 
-    border-radius:12px;
+    border-radius:14px;
 
     background:#198754;
 
@@ -164,18 +213,46 @@ body{
 
     cursor:pointer;
 
-    font-size:16px;
+    font-size:17px;
 
     font-weight:700;
 
+    letter-spacing:.2px;
+
+    box-shadow:
+    0 8px 18px rgba(25,135,84,.25);
+
+    transition:.25s ease;
+
+
 }
+
+
 
 
 .btn-guardar:hover{
 
+
     background:#157347;
 
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 12px 25px rgba(25,135,84,.35);
+
+
 }
+
+
+
+
+.btn-guardar:active{
+
+    transform:scale(.98);
+
+}
+
+
 
 
 
@@ -186,6 +263,7 @@ body{
 
 .preview-container{
 
+
     display:flex;
 
     justify-content:center;
@@ -194,7 +272,9 @@ body{
 
     overflow:auto;
 
+
 }
+
 
 
 
@@ -204,6 +284,7 @@ body{
 
 
 .a4{
+
 
     width:210mm;
 
@@ -218,11 +299,17 @@ body{
     border-radius:10px;
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.18);
+
+    0 15px 45px rgba(0,0,0,.18);
+
 
     position:relative;
 
+    transition:.3s ease;
+
+
 }
+
 
 
 
@@ -233,6 +320,7 @@ body{
 
 .recibo-header{
 
+
     display:flex;
 
     justify-content:space-between;
@@ -241,28 +329,37 @@ body{
 
     margin-bottom:20px;
 
+
 }
 
 
+
 .empresa h2{
+
 
     color:#1d3557;
 
     font-size:30px;
 
+
 }
 
 
+
 .empresa span{
+
 
     color:#777;
 
     font-size:15px;
 
+
 }
 
 
+
 .logo{
+
 
     display:flex;
 
@@ -272,16 +369,23 @@ body{
 
     width:180px;
 
+
 }
 
 
+
+
 .logo-img{
+
 
     width:170px;
 
     object-fit:contain;
 
+
 }
+
+
 
 
 
@@ -292,6 +396,7 @@ body{
 
 .titulo{
 
+
     display:flex;
 
     justify-content:space-between;
@@ -300,25 +405,35 @@ body{
 
     margin:30px 0;
 
+
 }
 
 
+
+
 .titulo h1{
+
 
     color:#1d3557;
 
     font-size:36px;
 
+
 }
 
 
+
 .numero{
+
 
     font-size:18px;
 
     font-weight:600;
 
+
 }
+
+
 
 
 
@@ -329,6 +444,7 @@ body{
 
 .info{
 
+
     display:grid;
 
     grid-template-columns:1fr 1fr;
@@ -337,10 +453,14 @@ body{
 
     margin-bottom:18px;
 
+
 }
 
 
+
+
 .info strong{
+
 
     display:block;
 
@@ -348,14 +468,20 @@ body{
 
     color:#444;
 
+
 }
+
 
 
 .info p{
 
+
     font-size:17px;
 
+
 }
+
+
 
 
 
@@ -366,21 +492,28 @@ body{
 
 .detalle{
 
+
     margin:40px 0;
 
     text-align:center;
 
+
 }
+
 
 
 .detalle p{
 
+
     font-size:17px;
+
 
 }
 
 
+
 .detalle h2{
+
 
     margin:20px 0;
 
@@ -388,7 +521,10 @@ body{
 
     font-size:38px;
 
+
 }
+
+
 
 
 
@@ -399,16 +535,21 @@ body{
 
 .resumen{
 
+
     border:1px solid #ddd;
 
     border-radius:10px;
 
     padding:20px;
 
+
 }
 
 
+
+
 .resumen div{
+
 
     display:flex;
 
@@ -416,21 +557,31 @@ body{
 
     margin-bottom:12px;
 
+
 }
+
+
 
 
 .resumen div:last-child{
 
+
     margin-bottom:0;
 
+
 }
+
 
 
 .resumen strong{
 
+
     color:#198754;
 
+
 }
+
+
 
 
 
@@ -441,21 +592,29 @@ body{
 
 .observaciones{
 
+
     margin-top:35px;
+
 
 }
 
 
+
+
 .observaciones strong{
+
 
     display:block;
 
     margin-bottom:10px;
 
+
 }
 
 
+
 .observaciones p{
+
 
     min-height:90px;
 
@@ -465,7 +624,10 @@ body{
 
     padding:12px;
 
+
 }
+
+
 
 
 
@@ -476,6 +638,7 @@ body{
 
 .firma{
 
+
     margin-top:60px;
 
     width:260px;
@@ -484,10 +647,14 @@ body{
 
     text-align:center;
 
+
 }
 
 
+
+
 .firma-img{
+
 
     width:180px;
 
@@ -495,10 +662,13 @@ body{
 
     object-fit:contain;
 
+
 }
 
 
+
 .linea{
+
 
     width:100%;
 
@@ -506,30 +676,44 @@ body{
 
     margin-bottom:10px;
 
+
 }
 
 
+
+
 .firma h4{
+
 
     color:#1d3557;
 
     margin-bottom:4px;
 
+
 }
+
 
 
 .firma p{
 
+
     margin-bottom:4px;
 
+
 }
+
+
 
 
 .firma small{
 
+
     color:#777;
 
+
 }
+
+
 
 
 
@@ -540,42 +724,61 @@ body{
 
 @media(max-width:1200px){
 
+
 .documentos-page{
+
 
     grid-template-columns:1fr;
 
+
 }
+
 
 
 .panel-documento{
 
+
     position:relative;
+
 
 }
 
 
+
 .preview-container{
+
 
     justify-content:flex-start;
 
     overflow:auto;
 
-}
 
 }
+
+
+
+}
+
+
 
 
 
 @media(max-width:768px){
 
+
 .documentos-page{
 
+
     padding:15px;
+
 
 }
 
 
+
+
 .a4{
+
 
     transform:scale(.55);
 
@@ -583,6 +786,9 @@ body{
 
     margin-bottom:-120mm;
 
+
 }
+
+
 
 }

@@ -1,7 +1,6 @@
 import { supabase } from "../supabase";
 
 export async function obtenerProximoNumero() {
-
     const { data, error } = await supabase
         .from("recibos")
         .select("numero")
@@ -18,4 +17,22 @@ export async function obtenerProximoNumero() {
     }
 
     return Number(data[0].numero) + 1;
+}
+
+export async function guardarRecibo(recibo) {
+    console.log("📤 Datos enviados a Supabase:", recibo);
+
+    const { data, error } = await supabase
+        .from("recibos")
+        .insert([recibo])
+        .select();
+
+    if (error) {
+        console.error("❌ Error detallado de Supabase:", error);
+        alert(`Error de Supabase [${error.code}]: ${error.message}`);
+        return null;
+    }
+
+    console.log("✅ Recibo guardado con éxito:", data);
+    return data[0];
 }
