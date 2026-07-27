@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import PageDestino from "./pages/PageDestino";
 import Testimonios from "./pages/Testimonios";
+import Documentos from "./pages/Documentos"; // <-- NUEVO
 
 function App() {
   return (
@@ -22,13 +23,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
 
+          {/* Nuevo módulo Documentos */}
+          <Route path="/documentos" element={<Documentos />} />
+
           {/* Página de testimonios */}
           <Route path="/testimonios" element={<Testimonios />} />
 
-          {/* Ruta dinámica con prefijo 'destino'.
-              Ahora tus enlaces serán '/destino/1', '/destino/2', etc.
-              Esto evita conflictos con futuras páginas.
-          */}
+          {/* Ruta dinámica */}
           <Route path="/destino/:id" element={<PageDestino />} />
         </Routes>
       </main>

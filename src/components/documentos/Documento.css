@@ -1,0 +1,528 @@
+/* =======================================================
+   KANSHA DOCUMENT MANAGER
+======================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#eef1f5;
+
+    font-family:Inter,Arial,sans-serif;
+
+}
+
+/* =======================================================
+   PAGE
+======================================================= */
+
+.documentos-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:380px 1fr;
+
+    gap:35px;
+
+    padding:35px;
+
+    background:#eef1f5;
+
+}
+
+/* =======================================================
+   PANEL
+======================================================= */
+
+.panel-documento{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:20px;
+
+    height:fit-content;
+
+}
+
+.panel-documento h2{
+
+    margin-bottom:25px;
+
+    color:#1d3557;
+
+    font-size:25px;
+
+}
+
+.grupo{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:18px;
+
+}
+
+.grupo label{
+
+    margin-bottom:6px;
+
+    font-weight:600;
+
+    color:#555;
+
+}
+
+.grupo input,
+.grupo textarea,
+.grupo select{
+
+    border:1px solid #d9dde3;
+
+    border-radius:10px;
+
+    padding:11px 13px;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+.grupo input:focus,
+.grupo textarea:focus,
+.grupo select:focus{
+
+    outline:none;
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 4px rgba(13,110,253,.08);
+
+}
+
+.resumen-panel{
+
+    margin-top:25px;
+
+    background:#f6f8fa;
+
+    border-radius:12px;
+
+    padding:18px;
+
+}
+
+.resumen-panel p{
+
+    margin-bottom:8px;
+
+}
+
+.btn-guardar{
+
+    width:100%;
+
+    border:none;
+
+    margin-top:20px;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#198754;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.btn-guardar:hover{
+
+    transform:translateY(-2px);
+
+    background:#157347;
+
+}
+
+/* =======================================================
+   PREVIEW
+======================================================= */
+
+.preview-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    overflow:auto;
+
+}
+
+/* =======================================================
+   A4
+======================================================= */
+
+.a4{
+
+    width:210mm;
+
+    min-height:297mm;
+
+    background:white;
+
+    padding:22mm 22mm 65mm 22mm;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.18);
+
+    position:relative;
+
+}
+
+/* =======================================================
+   HEADER
+======================================================= */
+
+.recibo-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.empresa h2{
+
+    color:#1d3557;
+
+    font-size:30px;
+
+}
+
+.empresa span{
+
+    color:#777;
+
+    font-size:15px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    width:180px;
+
+}
+
+.logo-img{
+
+    width:170px;
+
+    object-fit:contain;
+
+}
+
+/* =======================================================
+   TITULO
+======================================================= */
+
+.titulo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:30px 0;
+
+}
+
+.titulo h1{
+
+    color:#1d3557;
+
+    font-size:36px;
+
+}
+
+.numero{
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+/* =======================================================
+   INFO
+======================================================= */
+
+.info{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+    margin-bottom:18px;
+
+}
+
+.info strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#444;
+
+}
+
+.info p{
+
+    font-size:17px;
+
+}
+
+/* =======================================================
+   DETALLE
+======================================================= */
+
+.detalle{
+
+    margin:40px 0;
+
+    text-align:center;
+
+}
+
+.detalle p{
+
+    font-size:17px;
+
+}
+
+.detalle h2{
+
+    margin:20px 0;
+
+    color:#198754;
+
+    font-size:38px;
+
+}
+
+/* =======================================================
+   RESUMEN
+======================================================= */
+
+.resumen{
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:20px;
+
+}
+
+.resumen div{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+}
+
+.resumen div:last-child{
+
+    margin-bottom:0;
+
+}
+
+.resumen strong{
+
+    color:#198754;
+
+}
+
+/* =======================================================
+   OBSERVACIONES
+======================================================= */
+
+.observaciones{
+
+    margin-top:35px;
+
+}
+
+.observaciones strong{
+
+    display:block;
+
+    margin-bottom:10px;
+
+}
+
+.observaciones p{
+
+    min-height:90px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:12px;
+
+}
+
+/* =======================================================
+   FIRMA
+======================================================= */
+
+.firma{
+
+    position:absolute;
+
+    right:22mm;
+
+    bottom:25mm;
+
+    width:260px;
+
+    text-align:center;
+
+}
+
+.firma-img{
+
+    width:180px;
+
+    margin-bottom:-20px;
+
+    object-fit:contain;
+
+}
+
+.linea{
+
+    width:100%;
+
+    border-top:1px solid #444;
+
+    margin-bottom:10px;
+
+}
+
+.firma h4{
+
+    color:#1d3557;
+
+    margin-bottom:4px;
+
+}
+
+.firma p{
+
+    margin-bottom:4px;
+
+}
+
+.firma small{
+
+    color:#777;
+
+}
+
+/* =======================================================
+   RESPONSIVE
+======================================================= */
+
+@media(max-width:1200px){
+
+.documentos-page{
+
+    grid-template-columns:1fr;
+
+}
+
+.panel-documento{
+
+    position:relative;
+
+    top:auto;
+
+}
+
+.preview-container{
+
+    justify-content:flex-start;
+
+    overflow:auto;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.documentos-page{
+
+    padding:15px;
+
+}
+
+.a4{
+
+    transform:scale(.55);
+
+    transform-origin:top left;
+
+    margin-bottom:-120mm;
+
+}
+
+}
