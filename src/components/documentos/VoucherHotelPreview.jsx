@@ -330,7 +330,7 @@ const VoucherHotelPreview = forwardRef(({ voucher }, ref) => {
                     </p>
 
                     <p>
-                        ✉️ info@kansha.com
+                        ✉️ info@kanshaviajes.com
                     </p>
 
                 </div>
