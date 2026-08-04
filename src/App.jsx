@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -12,9 +13,24 @@ import PageDestino from "./pages/PageDestino";
 import Testimonios from "./pages/Testimonios";
 import Documentos from "./pages/Documentos"; // <-- NUEVO
 
+// Componente para subir el scroll automáticamente al cambiar de ruta
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // Cambiá a "auto" si querés que suba de golpe sin animación
+    });
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
 
       <main>
