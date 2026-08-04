@@ -7,7 +7,7 @@ export default function ScrollToTop() {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth" // Cambiá a "auto" si querés que suba de golpe sin animación
+      behavior: "smooth" 
     });
   }, [pathname]);
 

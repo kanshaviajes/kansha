@@ -22,7 +22,7 @@ function Admin() {
   return (
     <div className="container py-5">
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
 
         <div>
           <h2 className="mb-1">Panel de Administración 🛠️</h2>
@@ -32,12 +32,22 @@ function Admin() {
           </p>
         </div>
 
-        <button
-          className="btn btn-success"
-          onClick={() => navigate("/documentos")}
-        >
-          📄 Módulo Documentos
-        </button>
+        <div className="d-flex gap-2">
+          <button
+            className="btn btn-success"
+            onClick={() => navigate("/documentos")}
+          >
+            📄 Crear recibos
+          </button>
+
+          {/* 🏨 NUEVO BOTÓN PARA VOUCHER HOTEL */}
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate("/admin/voucher-hotel")}
+          >
+            🏨 Voucher Hotel
+          </button>
+        </div>
 
       </div>
 

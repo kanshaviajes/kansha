@@ -11,7 +11,10 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import PageDestino from "./pages/PageDestino";
 import Testimonios from "./pages/Testimonios";
-import Documentos from "./pages/Documentos"; // <-- NUEVO
+import Documentos from "./pages/Documentos";
+
+// Componentes / Módulos internos
+import VoucherHotel from "./components/documentos/VoucherHotel";
 
 // Componente para subir el scroll automáticamente al cambiar de ruta
 function ScrollToTop() {
@@ -20,7 +23,7 @@ function ScrollToTop() {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth" // Cambiá a "auto" si querés que suba de golpe sin animación
+      behavior: "smooth"
     });
   }, [pathname]);
 
@@ -41,6 +44,9 @@ function App() {
 
           {/* Nuevo módulo Documentos */}
           <Route path="/documentos" element={<Documentos />} />
+
+          {/* Módulo Voucher de Hotel */}
+          <Route path="/admin/voucher-hotel" element={<VoucherHotel />} />
 
           {/* Página de testimonios */}
           <Route path="/testimonios" element={<Testimonios />} />
