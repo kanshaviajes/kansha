@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import DocumentoForm from "../components/documentos/DocumentoForm";
+import ReciboForm from "../components/documentos/ReciboForm";
 import ReciboPreview from "../components/documentos/ReciboPreview";
 
 import { generarPDF } from "../services/pdfService";
@@ -12,6 +12,7 @@ import {
 import "../components/documentos/Documento.css";
 
 function Documentos() {
+
     const reciboRef = useRef(null);
 
     const [recibo, setRecibo] = useState({
@@ -31,21 +32,26 @@ function Documentos() {
     });
 
     useEffect(() => {
+
         async function cargarNumero() {
+
             const numero = await obtenerProximoNumero();
 
             setRecibo(prev => ({
                 ...prev,
                 numero
             }));
+
         }
 
         cargarNumero();
+
     }, []);
 
     const generarRecibo = async () => {
-        // 1 - Mapear propiedades a snake_case y manejar fecha vacía como null
+
         const reciboParaSupabase = {
+
             numero: recibo.numero,
             fecha_emision: recibo.fechaEmision,
             fecha_salida: recibo.fechaSalida ? recibo.fechaSalida : null,
@@ -60,17 +66,18 @@ function Documentos() {
             forma_pago: recibo.formaPago,
             observaciones: recibo.observaciones,
             estado: "Emitido"
+
         };
 
-        // 2 - Guardar en Supabase
         const guardado = await guardarRecibo(reciboParaSupabase);
 
         if (!guardado) {
+
             alert("❌ No se pudo guardar el recibo");
             return;
+
         }
 
-        // 3 - Generar PDF
         await generarPDF(
             reciboRef.current,
             `REC-${String(recibo.numero).padStart(3, "0")}`
@@ -79,12 +86,16 @@ function Documentos() {
         alert(
             `✅ Recibo Nº ${String(recibo.numero).padStart(3, "0")} generado correctamente`
         );
+
     };
 
     return (
+
         <div className="documentos-page">
+
             <div>
-                <DocumentoForm
+
+                <ReciboForm
                     recibo={recibo}
                     setRecibo={setRecibo}
                 />
@@ -96,14 +107,18 @@ function Documentos() {
                 >
                     📄 Generar Recibo PDF
                 </button>
+
             </div>
 
             <ReciboPreview
                 ref={reciboRef}
                 recibo={recibo}
             />
+
         </div>
+
     );
+
 }
 
 export default Documentos;
