@@ -32,7 +32,8 @@ function Admin() {
           </p>
         </div>
 
-        <div className="d-flex gap-2">
+        <div className="d-flex gap-2 flex-wrap">
+
           <button
             className="btn btn-success"
             onClick={() => navigate("/documentos")}
@@ -40,16 +41,24 @@ function Admin() {
             📄 Crear recibos
           </button>
 
-          {/* 🏨 NUEVO BOTÓN PARA VOUCHER HOTEL */}
           <button
             className="btn btn-primary"
             onClick={() => navigate("/admin/voucher-hotel")}
           >
             🏨 Voucher Hotel
           </button>
+
+          <button
+            className="btn btn-warning"
+            onClick={() => navigate("/admin/voucher-opcionales")}
+          >
+            🎟️ Voucher Opcionales
+          </button>
+
         </div>
 
       </div>
+
 
       {/* GESTIÓN DE DESTINOS */}
 
@@ -63,7 +72,9 @@ function Admin() {
 
       </section>
 
+
       <hr className="my-5" />
+
 
       {/* RESTO DEL PANEL */}
 
