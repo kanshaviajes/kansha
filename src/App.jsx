@@ -7,7 +7,6 @@ import WhatsAppButton from "./components/WhatsAppButton";
 
 import "./App.css";
 
-
 // ======================================================
 // PÁGINAS
 // ======================================================
@@ -19,6 +18,14 @@ import PageDestino from "./pages/PageDestino";
 import Testimonios from "./pages/Testimonios";
 import Documentos from "./pages/Documentos";
 
+import Cotizables from "./pages/Cotizables";
+import NuevoCotizable from "./pages/NuevoCotizable";
+import EditarCotizable from "./pages/EditarCotizable";
+
+import NuevaCotizacion from "./pages/NuevaCotizacion";
+import MisCotizaciones from "./pages/MisCotizaciones";
+import EditarCotizacion from "./pages/EditarCotizacion";
+import CotizacionPublica from "./pages/CotizacionPublica";
 
 // ======================================================
 // COMPONENTES / MÓDULOS INTERNOS
@@ -27,112 +34,163 @@ import Documentos from "./pages/Documentos";
 import VoucherHotel from "./components/documentos/VoucherHotel";
 import VoucherOpcionales from "./components/documentos/VoucherOpcionales";
 
-
 // ======================================================
 // SCROLL AUTOMÁTICO AL CAMBIAR DE RUTA
 // ======================================================
 
 function ScrollToTop() {
-
   const { pathname } = useLocation();
 
   useEffect(() => {
-
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
-
   }, [pathname]);
 
   return null;
 }
-
 
 // ======================================================
 // APP
 // ======================================================
 
 function App() {
-
   return (
     <>
-
       <ScrollToTop />
 
       <Navbar />
 
-
       <main>
-
         <Routes>
 
-          {/* HOME */}
+          {/* ==================================================
+              HOME
+          ================================================== */}
+
           <Route
             path="/"
             element={<Home />}
           />
 
+          {/* ==================================================
+              LOGIN
+          ================================================== */}
 
-          {/* LOGIN */}
           <Route
             path="/login"
             element={<Login />}
           />
 
+          {/* ==================================================
+              ADMIN
+          ================================================== */}
 
-          {/* ADMIN */}
           <Route
             path="/admin"
             element={<Admin />}
           />
 
+          {/* ==================================================
+              COTIZABLES
+          ================================================== */}
 
-          {/* DOCUMENTOS / RECIBOS */}
+          <Route
+            path="/admin/cotizables"
+            element={<Cotizables />}
+          />
+
+          <Route
+            path="/admin/cotizables/nuevo"
+            element={<NuevoCotizable />}
+          />
+
+          <Route
+            path="/admin/cotizables/:id/editar"
+            element={<EditarCotizable />}
+          />
+
+          {/* ==================================================
+              COTIZACIONES
+          ================================================== */}
+
+          <Route
+            path="/admin/cotizaciones"
+            element={<MisCotizaciones />}
+          />
+
+          <Route
+            path="/admin/cotizaciones/nueva"
+            element={<NuevaCotizacion />}
+          />
+
+          <Route
+            path="/admin/cotizaciones/:id/editar"
+            element={<EditarCotizacion />}
+          />
+
+          {/* ==================================================
+              COTIZACIÓN PÚBLICA
+          ================================================== */}
+
+          <Route
+            path="/cotizacion/:token"
+            element={<CotizacionPublica />}
+          />
+
+          {/* ==================================================
+              DOCUMENTOS / RECIBOS
+          ================================================== */}
+
           <Route
             path="/documentos"
             element={<Documentos />}
           />
 
+          {/* ==================================================
+              VOUCHER HOTEL
+          ================================================== */}
 
-          {/* VOUCHER HOTEL */}
           <Route
             path="/admin/voucher-hotel"
             element={<VoucherHotel />}
           />
 
+          {/* ==================================================
+              VOUCHER SERVICIOS OPCIONALES
+          ================================================== */}
 
-          {/* VOUCHER SERVICIOS OPCIONALES */}
           <Route
             path="/admin/voucher-opcionales"
             element={<VoucherOpcionales />}
           />
 
+          {/* ==================================================
+              TESTIMONIOS
+          ================================================== */}
 
-          {/* TESTIMONIOS */}
           <Route
             path="/testimonios"
             element={<Testimonios />}
           />
 
+          {/* ==================================================
+              DESTINO
+          ================================================== */}
 
-          {/* DESTINO */}
           <Route
             path="/destino/:id"
             element={<PageDestino />}
           />
 
         </Routes>
-
       </main>
-
 
       <Footer />
 
-
       {/* BOTÓN FLOTANTE */}
       <WhatsAppButton />
-
     </>
   );
 }
