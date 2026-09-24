@@ -1,0 +1,309 @@
+.hoja-viaje-documento {
+  width: 210mm;
+  min-height: 297mm;
+
+  box-sizing: border-box;
+
+  padding: 16mm 18mm 14mm;
+
+  background: #ffffff;
+  color: #252525;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  position: relative;
+}
+
+/* ==========================================
+   MEMBRETE
+========================================== */
+
+.hoja-viaje-header {
+  margin-bottom: 18px;
+}
+
+.hoja-viaje-logo {
+  display: block;
+
+  width: 145px;
+  max-height: 75px;
+
+  object-fit: contain;
+  object-position: left center;
+
+  margin-bottom: 14px;
+}
+
+.hoja-viaje-header-linea {
+  height: 4px;
+  width: 100%;
+
+  background: #198754;
+
+  border-radius: 10px;
+}
+
+/* ==========================================
+   TÍTULO
+========================================== */
+
+.hoja-viaje-titulo {
+  text-align: center;
+
+  margin: 26px 0 22px;
+}
+
+.hoja-viaje-titulo h1 {
+  margin: 0;
+
+  font-size: 29px;
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  color: #198754;
+}
+
+.hoja-viaje-subtitulo {
+  margin-top: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+
+  text-transform: uppercase;
+
+  color: #555;
+}
+
+.hoja-viaje-separador {
+  margin: 0 8px;
+  color: #198754;
+}
+
+/* ==========================================
+   RESUMEN
+========================================== */
+
+.hoja-viaje-resumen {
+  padding: 16px 18px;
+
+  border: 1px solid #dedede;
+  border-radius: 10px;
+
+  margin-bottom: 18px;
+}
+
+.hoja-viaje-fechas {
+  display: flex;
+  gap: 50px;
+
+  margin-bottom: 12px;
+}
+
+.hoja-viaje-fechas > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hoja-viaje-label {
+  font-size: 9px;
+
+  letter-spacing: 1px;
+
+  color: #777;
+
+  margin-bottom: 2px;
+}
+
+.hoja-viaje-fechas strong {
+  font-size: 15px;
+}
+
+.hoja-viaje-duracion {
+  font-size: 14px;
+
+  margin-bottom: 10px;
+}
+
+.hoja-viaje-recorrido {
+  font-size: 13px;
+
+  color: #444;
+}
+
+/* ==========================================
+   PRECIO
+========================================== */
+
+.hoja-viaje-precio {
+  background: #f1f8f4;
+
+  border-left: 5px solid #198754;
+
+  padding: 13px 18px;
+
+  margin-bottom: 20px;
+}
+
+.hoja-viaje-precio-label {
+  display: block;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+
+  color: #666;
+}
+
+.hoja-viaje-precio-valor {
+  font-size: 26px;
+  font-weight: 800;
+
+  color: #198754;
+
+  line-height: 1.15;
+}
+
+.hoja-viaje-precio-detalle {
+  font-size: 12px;
+
+  margin-top: 3px;
+
+  color: #555;
+}
+
+/* ==========================================
+   BLOQUES
+========================================== */
+
+.hoja-viaje-bloque {
+  margin-bottom: 17px;
+}
+
+.hoja-viaje-bloque h2 {
+  margin: 0 0 8px;
+
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid #dedede;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.6px;
+
+  color: #198754;
+}
+
+.hoja-viaje-bloque p {
+  margin: 0 0 7px;
+
+  font-size: 11.5px;
+  line-height: 1.5;
+
+  white-space: pre-line;
+}
+
+.hoja-viaje-lista {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.hoja-viaje-lista li {
+  margin-bottom: 4px;
+
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.hoja-viaje-nota {
+  margin-top: 8px !important;
+
+  padding: 8px 10px;
+
+  background: #f7f7f7;
+
+  border-radius: 5px;
+}
+
+/* ==========================================
+   SEÑA
+========================================== */
+
+.hoja-viaje-sena {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+
+  padding: 11px 14px;
+
+  border: 2px solid #198754;
+  border-radius: 7px;
+
+  margin-top: 16px;
+
+  color: #198754;
+}
+
+.hoja-viaje-sena span {
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+}
+
+.hoja-viaje-sena strong {
+  font-size: 18px;
+}
+
+.hoja-viaje-sena small {
+  font-size: 11px;
+
+  color: #555;
+}
+
+/* ==========================================
+   CIERRE
+========================================== */
+
+.hoja-viaje-cierre {
+  margin-top: 18px;
+
+  padding: 12px;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #198754;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.hoja-viaje-footer {
+  margin-top: 22px;
+
+  text-align: center;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+
+  color: #777;
+}
+
+.hoja-viaje-footer-linea {
+  height: 1px;
+
+  background: #ddd;
+
+  margin-bottom: 10px;
+}

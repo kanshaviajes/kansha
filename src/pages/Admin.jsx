@@ -47,6 +47,7 @@ function Admin() {
       <section className="mb-5 border p-4 rounded">
 
         <div className="mb-4">
+
           <h3 className="mb-1">
             ✈️ Cotizaciones
           </h3>
@@ -55,6 +56,7 @@ function Admin() {
             Crea plantillas de viajes y genera propuestas personalizadas
             para cada pasajero.
           </p>
+
         </div>
 
         <div className="row g-3">
@@ -144,14 +146,18 @@ function Admin() {
           </h3>
 
           <p className="text-muted mb-0">
-            Genera recibos y vouchers para los pasajeros.
+            Genera recibos, vouchers y hojas informativas
+            para los pasajeros.
           </p>
 
         </div>
 
         <div className="d-flex gap-2 flex-wrap">
 
+          {/* RECIBOS */}
+
           <button
+            type="button"
             className="btn btn-success"
             onClick={() =>
               navigate("/documentos")
@@ -160,7 +166,11 @@ function Admin() {
             📄 Crear recibos
           </button>
 
+
+          {/* VOUCHER HOTEL */}
+
           <button
+            type="button"
             className="btn btn-primary"
             onClick={() =>
               navigate("/admin/voucher-hotel")
@@ -169,13 +179,30 @@ function Admin() {
             🏨 Voucher Hotel
           </button>
 
+
+          {/* VOUCHER OPCIONALES */}
+
           <button
+            type="button"
             className="btn btn-warning"
             onClick={() =>
               navigate("/admin/voucher-opcionales")
             }
           >
             🎟️ Voucher Opcionales
+          </button>
+
+
+          {/* HOJAS DE VIAJE */}
+
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={() =>
+              navigate("/admin/hojas-viaje")
+            }
+          >
+            📑 Hojas de viaje
           </button>
 
         </div>
@@ -214,7 +241,8 @@ function Admin() {
           </h3>
 
           <p className="text-muted mb-0">
-            Administra las distintas secciones visibles en la página principal.
+            Administra las distintas secciones visibles
+            en la página principal.
           </p>
 
         </div>

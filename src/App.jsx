@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { useLocation, Routes, Route } from "react-router-dom";
+import {
+  useLocation,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -18,14 +22,30 @@ import PageDestino from "./pages/PageDestino";
 import Testimonios from "./pages/Testimonios";
 import Documentos from "./pages/Documentos";
 
+// ======================================================
+// COTIZABLES
+// ======================================================
+
 import Cotizables from "./pages/Cotizables";
 import NuevoCotizable from "./pages/NuevoCotizable";
 import EditarCotizable from "./pages/EditarCotizable";
+
+// ======================================================
+// COTIZACIONES
+// ======================================================
 
 import NuevaCotizacion from "./pages/NuevaCotizacion";
 import MisCotizaciones from "./pages/MisCotizaciones";
 import EditarCotizacion from "./pages/EditarCotizacion";
 import CotizacionPublica from "./pages/CotizacionPublica";
+
+// ======================================================
+// HOJAS DE VIAJE
+// ======================================================
+
+import HojasViaje from "./pages/HojasViaje";
+import NuevaHojaViaje from "./pages/NuevaHojaViaje";
+import EditarHojaViaje from "./pages/EditarHojaViaje";
 
 // ======================================================
 // COMPONENTES / MÓDULOS INTERNOS
@@ -164,6 +184,25 @@ function App() {
           <Route
             path="/admin/voucher-opcionales"
             element={<VoucherOpcionales />}
+          />
+
+          {/* ==================================================
+              HOJAS DE VIAJE
+          ================================================== */}
+
+          <Route
+            path="/admin/hojas-viaje"
+            element={<HojasViaje />}
+          />
+
+          <Route
+            path="/admin/hojas-viaje/nueva"
+            element={<NuevaHojaViaje />}
+          />
+
+          <Route
+            path="/admin/hojas-viaje/:id/editar"
+            element={<EditarHojaViaje />}
           />
 
           {/* ==================================================
