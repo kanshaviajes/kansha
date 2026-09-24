@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -13,19 +14,45 @@ import {
   duplicarHojaViaje,
 } from "../services/hojasViajeService";
 
+import {
+  generarHojaViajePDF,
+} from "../services/pdfService";
+
+import HojaViajeDocumento from "../components/documentos/HojaViajeDocumento";
+
 function HojasViaje() {
   const navigate = useNavigate();
 
-  const [hojas, setHojas] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [error, setError] = useState("");
+  const documentoRef = useRef(null);
+
+  const [hojas, setHojas] =
+    useState([]);
+
+  const [cargando, setCargando] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  const [hojaDescarga, setHojaDescarga] =
+    useState(null);
+
+  const [
+    descargandoId,
+    setDescargandoId,
+  ] = useState(null);
+
+  // ======================================================
+  // CARGAR HOJAS
+  // ======================================================
 
   const cargarHojas = async () => {
     try {
       setCargando(true);
       setError("");
 
-      const data = await obtenerHojasViaje();
+      const data =
+        await obtenerHojasViaje();
 
       setHojas(data || []);
     } catch (error) {
@@ -60,11 +87,14 @@ function HojasViaje() {
     }
 
     try {
-      await eliminarHojaViaje(hoja.id);
+      await eliminarHojaViaje(
+        hoja.id
+      );
 
       setHojas((anteriores) =>
         anteriores.filter(
-          (item) => item.id !== hoja.id
+          (item) =>
+            item.id !== hoja.id
         )
       );
     } catch (error) {
@@ -86,7 +116,9 @@ function HojasViaje() {
   const handleDuplicar = async (hoja) => {
     try {
       const copia =
-        await duplicarHojaViaje(hoja.id);
+        await duplicarHojaViaje(
+          hoja.id
+        );
 
       setHojas((anteriores) => [
         copia,
@@ -105,6 +137,51 @@ function HojasViaje() {
   };
 
   // ======================================================
+  // DESCARGAR PDF
+  // ======================================================
+
+  const handleDescargar = async (hoja) => {
+    try {
+      setDescargandoId(hoja.id);
+      setError("");
+
+      // Renderizamos temporalmente
+      // la hoja que queremos descargar.
+      setHojaDescarga(hoja);
+
+      // Esperamos a que React termine
+      // de renderizar el documento.
+      await new Promise((resolve) =>
+        setTimeout(resolve, 150)
+      );
+
+      if (!documentoRef.current) {
+        throw new Error(
+          "No se pudo preparar el documento."
+        );
+      }
+
+      await generarHojaViajePDF(
+        documentoRef.current,
+        hoja.titulo ||
+          "Hoja-de-viaje"
+      );
+    } catch (error) {
+      console.error(
+        "Error generando PDF:",
+        error
+      );
+
+      setError(
+        "No se pudo descargar la hoja de viaje."
+      );
+    } finally {
+      setDescargandoId(null);
+      setHojaDescarga(null);
+    }
+  };
+
+  // ======================================================
   // FECHA
   // ======================================================
 
@@ -119,14 +196,21 @@ function HojasViaje() {
     return `${dia}/${mes}/${anio}`;
   };
 
+  // ======================================================
+  // RENDER
+  // ======================================================
+
   return (
     <div className="container py-5">
 
-      {/* ENCABEZADO */}
+      {/* ==================================================
+          ENCABEZADO
+      ================================================== */}
 
       <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
         <div>
+
           <h2 className="mb-1">
             📑 Hojas de viaje
           </h2>
@@ -135,13 +219,16 @@ function HojasViaje() {
             Crea, edita y descarga fichas
             informativas de los viajes.
           </p>
+
         </div>
 
         <button
           type="button"
           className="btn btn-success"
           onClick={() =>
-            navigate("/admin/hojas-viaje/nueva")
+            navigate(
+              "/admin/hojas-viaje/nueva"
+            )
           }
         >
           + Nueva hoja de viaje
@@ -149,7 +236,9 @@ function HojasViaje() {
 
       </div>
 
-      {/* ERROR */}
+      {/* ==================================================
+          ERROR
+      ================================================== */}
 
       {error && (
         <div className="alert alert-danger">
@@ -157,17 +246,23 @@ function HojasViaje() {
         </div>
       )}
 
-      {/* CARGANDO */}
+      {/* ==================================================
+          CARGANDO
+      ================================================== */}
 
       {cargando && (
         <div className="text-center py-5">
+
           <p className="text-muted">
             Cargando hojas de viaje...
           </p>
+
         </div>
       )}
 
-      {/* SIN HOJAS */}
+      {/* ==================================================
+          SIN HOJAS
+      ================================================== */}
 
       {!cargando &&
         !error &&
@@ -179,8 +274,8 @@ function HojasViaje() {
             </h4>
 
             <p className="text-muted">
-              Crea la primera ficha informativa
-              para comenzar.
+              Crea la primera ficha
+              informativa para comenzar.
             </p>
 
             <button
@@ -198,7 +293,9 @@ function HojasViaje() {
           </div>
         )}
 
-      {/* LISTADO */}
+      {/* ==================================================
+          LISTADO
+      ================================================== */}
 
       {!cargando &&
         hojas.length > 0 && (
@@ -209,14 +306,27 @@ function HojasViaje() {
               <table className="table table-hover align-middle mb-0">
 
                 <thead className="table-light">
+
                   <tr>
-                    <th>Viaje</th>
-                    <th>Salida</th>
-                    <th>Precio</th>
+
+                    <th>
+                      Viaje
+                    </th>
+
+                    <th>
+                      Salida
+                    </th>
+
+                    <th>
+                      Precio
+                    </th>
+
                     <th className="text-end">
                       Acciones
                     </th>
+
                   </tr>
+
                 </thead>
 
                 <tbody>
@@ -224,7 +334,10 @@ function HojasViaje() {
                   {hojas.map((hoja) => (
                     <tr key={hoja.id}>
 
+                      {/* VIAJE */}
+
                       <td>
+
                         <strong>
                           {hoja.titulo}
                         </strong>
@@ -234,7 +347,10 @@ function HojasViaje() {
                             {hoja.temporada}
                           </div>
                         )}
+
                       </td>
+
+                      {/* SALIDA */}
 
                       <td>
                         {formatearFecha(
@@ -242,14 +358,26 @@ function HojasViaje() {
                         )}
                       </td>
 
-                      <td>
-                        {hoja.precio
-                          ? `${hoja.moneda || "USD"} ${hoja.precio}`
-                          : "—"}
-                      </td>
+                      {/* PRECIO */}
 
                       <td>
+
+                        {hoja.precio
+                          ? `${
+                              hoja.moneda ||
+                              "USD"
+                            } ${hoja.precio}`
+                          : "—"}
+
+                      </td>
+
+                      {/* ACCIONES */}
+
+                      <td>
+
                         <div className="d-flex justify-content-end gap-2 flex-wrap">
+
+                          {/* EDITAR */}
 
                           <button
                             type="button"
@@ -263,6 +391,8 @@ function HojasViaje() {
                             Editar
                           </button>
 
+                          {/* DUPLICAR */}
+
                           <button
                             type="button"
                             className="btn btn-sm btn-outline-secondary"
@@ -271,9 +401,38 @@ function HojasViaje() {
                                 hoja
                               )
                             }
+                            disabled={
+                              descargandoId !==
+                              null
+                            }
                           >
                             Duplicar
                           </button>
+
+                          {/* DESCARGAR */}
+
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-success"
+                            onClick={() =>
+                              handleDescargar(
+                                hoja
+                              )
+                            }
+                            disabled={
+                              descargandoId !==
+                              null
+                            }
+                          >
+
+                            {descargandoId ===
+                            hoja.id
+                              ? "Generando..."
+                              : "📥 Descargar"}
+
+                          </button>
+
+                          {/* ELIMINAR */}
 
                           <button
                             type="button"
@@ -283,11 +442,16 @@ function HojasViaje() {
                                 hoja
                               )
                             }
+                            disabled={
+                              descargandoId !==
+                              null
+                            }
                           >
                             Eliminar
                           </button>
 
                         </div>
+
                       </td>
 
                     </tr>
@@ -302,7 +466,12 @@ function HojasViaje() {
           </div>
         )}
 
+      {/* ==================================================
+          VOLVER
+      ================================================== */}
+
       <div className="mt-4">
+
         <button
           type="button"
           className="btn btn-outline-secondary"
@@ -312,7 +481,41 @@ function HojasViaje() {
         >
           ← Volver al panel
         </button>
+
       </div>
+
+      {/* ==================================================
+          DOCUMENTO OCULTO PARA GENERAR PDF
+
+          Tiene que estar renderizado en el DOM para que
+          html2canvas pueda capturarlo.
+
+          Lo colocamos fuera de la pantalla en lugar de
+          usar display:none.
+      ================================================== */}
+
+      {hojaDescarga && (
+        <div
+          style={{
+            position: "fixed",
+            left: "-10000px",
+            top: "0",
+            width: "210mm",
+            background: "#ffffff",
+            zIndex: -1,
+          }}
+        >
+
+          <div ref={documentoRef}>
+
+            <HojaViajeDocumento
+              hoja={hojaDescarga}
+            />
+
+          </div>
+
+        </div>
+      )}
 
     </div>
   );
