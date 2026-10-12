@@ -1,257 +1,471 @@
-/* Estilo general del Navbar */
+
+/* =========================================
+   KANSHA VIAJES - NAVBAR PREMIUM
+========================================= */
+
 .custom-navbar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  --kansha-green: #06402b;
+  --kansha-yellow: #ffde59;
+
+  position: relative;
+  z-index: 1050;
+
+  width: 100%;
+  min-height: 100px;
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.97);
+  color: #18382e;
+
+  transition:
+    background 300ms ease,
+    box-shadow 300ms ease,
+    border-color 300ms ease;
 }
 
+/* =========================================
+   NAVBAR SOBRE EL HERO
+========================================= */
 
-/* Logo */
-
-.navbar-logo {
-
-  height: 200px;
-  width: auto;
-
-  margin-top: 25px;
-  margin-bottom: -15px;
-
-  object-fit: contain;
-
-  transition: transform .3s ease;
+.custom-navbar--home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
+.custom-navbar--transparent {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 18, 17, 0.58) 0%,
+    rgba(0, 18, 17, 0.22) 65%,
+    transparent 100%
+  );
 
-.navbar-logo:hover {
-
-  transform: scale(1.05);
-
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: none;
 }
 
+.custom-navbar--solid {
+  background: rgba(255, 255, 255, 0.97);
+  color: #18382e;
 
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
 
-.navbar-brand {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
 
-  display: flex;
+/* =========================================
+   CONTENEDOR - TRES COLUMNAS
+========================================= */
+
+.custom-navbar__container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+
   align-items: center;
 
+  width: 100%;
+  padding: 0 clamp(24px, 3.5vw, 70px);
+  gap: 20px;
+}
+
+/* IZQUIERDA */
+
+.custom-navbar__left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+/* CENTRO */
+
+.custom-navbar__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DERECHA */
+
+.custom-navbar__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.custom-navbar__brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  flex-shrink: 0;
+  height: auto;
+
+  margin: 0 !important;
   padding: 0 !important;
 
-  height: 60px;
-
-  overflow: visible;
-
+  text-decoration: none;
 }
 
+.navbar-logo {
+  display: block;
 
+  width: 210px;
+  height: auto;
+  max-height: 84px;
 
+  object-fit: contain;
+  margin: 0;
 
-
-/* Contenedor de botones derecha */
-
-.navbar-actions {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
+  transition: transform 250ms ease;
 }
 
+.navbar-logo:hover {
+  transform: scale(1.035);
+}
 
-
-/* Usuario logueado */
+/* =========================================
+   USUARIO
+========================================= */
 
 .navbar-user {
-
   display: flex;
-
   align-items: center;
+  justify-content: flex-end;
 
-  gap: 8px;
+  gap: 12px;
+  min-width: 0;
+}
 
-  font-size: .85rem;
+.navbar-user__greeting {
+  font-size: 0.9rem;
+  font-weight: 500;
 
+  color: #52615b;
   white-space: nowrap;
-
 }
 
-
-
-.navbar-user span {
-
-  color: #6c757d;
-
+.custom-navbar--transparent .navbar-user__greeting {
+  color: rgba(255, 255, 255, 0.95);
 }
 
+/* =========================================
+   BOTÓN SALIR
+========================================= */
 
+.navbar-logout {
+  flex-shrink: 0;
 
-.navbar-user button {
+  padding: 9px 15px;
 
-  font-size: .75rem;
+  border: 1px solid rgba(180, 48, 48, 0.6);
+  border-radius: 100px;
 
-  padding: 4px 12px;
+  background: transparent;
+  color: #b43030;
 
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 250ms ease,
+    color 250ms ease;
 }
 
-
-
-
-/* Botón destinos */
-
-.navbar-actions .btn-primary {
-
-  white-space: nowrap;
-
+.navbar-logout:hover {
+  background: #b43030;
+  color: #ffffff;
 }
 
+.custom-navbar--transparent .navbar-logout {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.65);
+}
 
+.custom-navbar--transparent .navbar-logout:hover {
+  background: #ffffff;
+  color: #06402b;
+}
 
+/* =========================================
+   BOTÓN DESTINOS
+========================================= */
 
+.navbar-destinos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
+  gap: 10px;
+  flex-shrink: 0;
 
-/* Modal */
+  min-height: 44px;
+  padding: 11px 23px;
 
-.modal-content {
+  border: 1px solid #06402b;
+  border-radius: 100px;
 
-  border-radius: 24px !important;
+  background: #06402b;
+  color: #ffffff;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease,
+    transform 250ms ease;
+}
+
+.navbar-destinos:hover {
+  transform: translateY(-2px);
+
+  background: #0c6043;
+  border-color: #0c6043;
+  color: #ffffff;
+}
+
+.custom-navbar--transparent .navbar-destinos {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #ffffff;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.custom-navbar--transparent .navbar-destinos:hover {
+  background: #ffde59;
+  border-color: #ffde59;
+  color: #06402b;
+}
+
+/* =========================================
+   MODAL
+========================================= */
+
+.kansha-destinos-modal {
+  z-index: 1060;
+}
+
+.kansha-destinos-modal .modal-content {
+  border: none;
+  border-radius: 22px;
 
   overflow: hidden;
 
-  border: none;
-
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
 }
 
+.kansha-destinos-modal .modal-header {
+  display: flex;
+  align-items: flex-start;
 
+  padding: 28px 28px 18px;
 
-.modal-header {
-
-  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-
+  border-bottom: 1px solid #edf0ed;
 }
 
+.kansha-modal-eyebrow {
+  display: block;
+  margin-bottom: 7px;
 
+  color: #668579;
 
-
-
-/* Lista destinos */
-
-.list-group-item {
-
-  border: none !important;
-
-  transition: all 0.3s ease;
-
-  padding: 1rem 1.5rem;
-
-  font-size: 1.1rem;
-
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
+.kansha-destinos-modal .modal-title {
+  color: #06402b;
 
-
-.list-group-item:hover {
-
-  background-color: #f8f9fa;
-
-  color: #0d6efd;
-
-  padding-left: 2rem;
-
+  font-size: 1.55rem;
+  font-weight: 800;
 }
 
-
-
-.list-group-item i {
-
-  font-size: 1.2rem;
-
-  transition: transform .3s ease;
-
-}
-
-
-
-.list-group-item:hover i {
-
-  transform: translateX(5px);
-
-}
-
-
-
-
-
-/* Scroll modal */
-
-.modal-body {
-
+.kansha-destinos-modal .modal-body {
   max-height: 60vh;
 
+  padding: 12px 16px 20px;
+
   overflow-y: auto;
-
 }
 
+/* =========================================
+   OPCIONES DEL MODAL
+========================================= */
 
+.kansha-destino-option {
+  display: flex;
+  align-items: center;
 
-.modal-body::-webkit-scrollbar {
+  gap: 14px;
 
-  width: 6px;
+  padding: 15px 14px;
 
-}
-
-
-.modal-body::-webkit-scrollbar-thumb {
-
-  background-color: #dee2e6;
-
+  border: none;
   border-radius: 10px;
 
+  background: transparent;
+  color: #233e33;
+
+  text-align: left;
+  font-size: 0.96rem;
+  font-weight: 600;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease;
 }
 
+.kansha-destino-option:hover {
+  background: #eef5ef;
+  color: #06402b;
+}
 
+.kansha-destino-option .bi-geo-alt {
+  color: #287e56;
+  font-size: 1.1rem;
+}
 
+.kansha-destino-option .bi-arrow-up-right {
+  margin-left: auto;
 
+  color: #729486;
+  font-size: 0.9rem;
+}
 
+/* =========================================
+   TABLET
+========================================= */
 
-
-/* Responsive */
-
-@media (max-width: 768px) {
-
-
+@media (max-width: 991px) {
   .custom-navbar {
-
-    padding: .7rem 0;
-
+    min-height: 86px;
   }
 
+  .custom-navbar__container {
+    padding: 0 24px;
+    gap: 14px;
+  }
 
   .navbar-logo {
-
-    height: 140px;
-
-    margin-top: 15px;
-
+    width: 180px;
+    max-height: 72px;
   }
 
+  .navbar-user__greeting {
+    font-size: 0.8rem;
+  }
+}
 
-  .navbar-user span {
+/* =========================================
+   CELULAR
+========================================= */
 
+@media (max-width: 767px) {
+  .custom-navbar {
+    min-height: 74px;
+    padding: 10px 0;
+  }
+
+  .custom-navbar__container {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+
+    padding: 0 16px;
+    gap: 10px;
+  }
+
+  .navbar-logo {
+    width: 145px;
+    max-height: 58px;
+  }
+
+  .custom-navbar__center {
+    justify-content: flex-end;
+  }
+
+  .custom-navbar__right {
+    justify-content: flex-end;
+  }
+
+  .navbar-user {
+    gap: 7px;
+  }
+
+  .navbar-user__greeting {
     display: none;
-
   }
 
-
-  .navbar-user button {
-
-    padding: 3px 10px;
-
+  .navbar-logout {
+    padding: 7px 11px;
+    font-size: 0.73rem;
   }
 
+  .navbar-destinos {
+    min-height: 38px;
 
+    padding: 8px 14px;
+
+    font-size: 0.8rem;
+    gap: 7px;
+  }
+
+  .kansha-destinos-modal .modal-header {
+    padding: 22px 20px 15px;
+  }
+}
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 360px) {
+  .custom-navbar__container {
+    padding: 0 12px;
+    gap: 6px;
+  }
+
+  .navbar-logo {
+    width: 110px;
+    max-height: 48px;
+  }
+
+  .navbar-destinos {
+    padding: 8px 10px;
+    gap: 5px;
+  }
+
+  .navbar-logout {
+    padding: 7px 9px;
+  }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-navbar,
+  .navbar-logo,
+  .navbar-destinos,
+  .navbar-logout {
+    transition: none;
+  }
 }

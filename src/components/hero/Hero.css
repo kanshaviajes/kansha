@@ -1,0 +1,415 @@
+
+/* =========================================
+   KANSHA - HERO EDITORIAL
+========================================= */
+
+.kansha-hero {
+  --hero-container: 1440px;
+  --hero-gutter: max(
+    32px,
+    calc((100vw - var(--hero-container)) / 2)
+  );
+
+  position: relative;
+  width: 100%;
+  height: clamp(650px, 88svh, 850px);
+  min-height: 650px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #06402b;
+  color: #fff;
+}
+
+/* FONDOS */
+
+.kansha-hero__backgrounds {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.kansha-hero__background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.055);
+  transition:
+    opacity 850ms ease,
+    transform 6500ms ease;
+}
+
+.kansha-hero__background--active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.kansha-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 18, 16, 0.83) 0%,
+      rgba(0, 20, 18, 0.64) 30%,
+      rgba(0, 22, 20, 0.18) 72%,
+      rgba(0, 15, 14, 0.08) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 18, 16, 0.3),
+      transparent 45%
+    );
+}
+
+/* LAYOUT */
+
+.kansha-hero__layout {
+  width: min(calc(100% - 64px), var(--hero-container));
+  height: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(35px, 4vw, 70px);
+  padding: 120px 0 55px;
+}
+
+/* TEXTO */
+
+.kansha-hero__content {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  max-width: 550px;
+}
+
+.kansha-hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: #ffde59;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.kansha-hero__info {
+  animation: kanshaContentEnter 550ms ease both;
+}
+
+.kansha-hero__content h1 {
+  margin: 0 0 22px;
+  font-size: clamp(3.7rem, 5.8vw, 6.2rem);
+  line-height: 0.98;
+  font-weight: 800;
+  letter-spacing: -3px;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.kansha-hero__description {
+  max-width: 420px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.kansha-hero__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 30px;
+  padding: 15px 26px;
+  border-radius: 100px;
+  background: #ffde59;
+  color: #06402b;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 250ms ease,
+    background 250ms ease;
+}
+
+.kansha-hero__button:hover {
+  transform: translateY(-3px);
+  background: #fff;
+  color: #06402b;
+}
+
+/* SWIPER */
+
+.kansha-hero__showcase {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  width: calc(100% + var(--hero-gutter));
+  overflow: visible;
+}
+
+.kansha-hero__swiper {
+  width: 100%;
+  overflow: visible;
+  padding: 28px 0 34px;
+}
+
+.kansha-hero__slide {
+  width: clamp(195px, 14.5vw, 235px) !important;
+  height: clamp(345px, 28vw, 405px);
+}
+
+/* TARJETAS */
+
+.kansha-hero__card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  background: #123e32;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.24);
+  transition:
+    transform 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.kansha-hero__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 48px rgba(0, 0, 0, 0.35);
+}
+
+.kansha-hero__card--active {
+  border-color: rgba(255, 222, 89, 0.9);
+}
+
+.kansha-hero__card:focus-visible {
+  outline: 3px solid #ffde59;
+  outline-offset: 3px;
+}
+
+.kansha-hero__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.kansha-hero__card:hover img {
+  transform: scale(1.07);
+}
+
+.kansha-hero__card::after {
+  content: "";
+  position: absolute;
+  inset: 25% 0 0;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0, 0, 0, 0.16) 30%,
+    rgba(0, 0, 0, 0.86) 100%
+  );
+  pointer-events: none;
+}
+
+.kansha-hero__card-index {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.kansha-hero__card-details {
+  position: absolute;
+  bottom: 24px;
+  left: 18px;
+  right: 15px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kansha-hero__card-title {
+  color: #fff;
+  font-size: clamp(1.4rem, 1.8vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+}
+
+.kansha-hero__card-subtitle {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* ESTADOS Y ANIMACIONES */
+
+.kansha-hero--loading {
+  display: grid;
+  place-items: center;
+}
+
+@keyframes kanshaContentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .kansha-hero__layout {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 28px;
+  }
+
+  .kansha-hero__content h1 {
+    font-size: clamp(3rem, 5.8vw, 4.8rem);
+  }
+
+  .kansha-hero__slide {
+    width: 195px !important;
+    height: 345px;
+  }
+}
+
+/* MÓVIL Y TABLET VERTICAL */
+
+@media (max-width: 767px) {
+  .kansha-hero {
+    --hero-gutter: 20px;
+    height: auto;
+    min-height: 800px;
+  }
+
+  .kansha-hero__layout {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 30px;
+    padding: 140px 0 55px;
+  }
+
+  .kansha-hero__content h1 {
+    font-size: clamp(3rem, 9vw, 5rem);
+  }
+
+  .kansha-hero__showcase {
+    width: calc(100% + 20px);
+  }
+
+  .kansha-hero__slide {
+    width: 185px !important;
+    height: 325px;
+  }
+
+  .kansha-hero__overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 17, 15, 0.85),
+      rgba(0, 17, 15, 0.42)
+    );
+  }
+}
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+  .kansha-hero {
+    min-height: 750px;
+  }
+
+  .kansha-hero__layout {
+    width: calc(100% - 32px);
+    gap: 24px;
+    padding: 125px 0 45px;
+  }
+
+  .kansha-hero__eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+
+  .kansha-hero__content h1 {
+    font-size: clamp(2.8rem, 11vw, 4rem);
+    letter-spacing: -2px;
+  }
+
+  .kansha-hero__description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .kansha-hero__button {
+    margin-top: 22px;
+    padding: 13px 22px;
+  }
+
+  .kansha-hero__showcase {
+    width: calc(100% + 16px);
+  }
+
+  .kansha-hero__swiper {
+    padding: 18px 0 26px;
+  }
+
+  .kansha-hero__slide {
+    width: 165px !important;
+    height: 290px;
+  }
+
+  .kansha-hero__card-details {
+    bottom: 19px;
+    left: 13px;
+    right: 12px;
+  }
+
+  .kansha-hero__card-title {
+    font-size: 1.25rem;
+  }
+
+  .kansha-hero__card-subtitle {
+    font-size: 0.7rem;
+  }
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+  .kansha-hero__background,
+  .kansha-hero__info,
+  .kansha-hero__card,
+  .kansha-hero__card img,
+  .custom-navbar {
+    animation: none;
+    transition: none;
+  }
+}
