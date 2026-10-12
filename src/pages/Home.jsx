@@ -1,7 +1,6 @@
 
 import Hero from "../components/hero/Hero";
-import HeroCards from "../components/HeroCards";
-import SeccionViajes from "../components/SeccionViajes";
+import DestinosDestacados from "../components/destacados/DestinosDestacados";
 import OfertasAereas from "../components/OfertasAereas";
 import FlorenciaCard from "../components/FlorenciaCard";
 import UltimosTestimonios from "../components/testimonios/UltimosTestimonios";
@@ -9,27 +8,16 @@ import UltimosTestimonios from "../components/testimonios/UltimosTestimonios";
 function Home() {
   return (
     <main>
-      {/* Nuevo Hero interactivo */}
+      {/* Hero principal */}
       <Hero />
 
-      {/* Destinos destacados - temporalmente conservados */}
-      <section className="py-5">
-        <div className="container">
-          <h3 className="mb-4">
-            Destinos Destacados
-          </h3>
-        </div>
+      {/* Últimos viajes publicados */}
+      <DestinosDestacados />
 
-        <HeroCards />
-      </section>
-
-      {/* Sección viajes */}
-      <SeccionViajes />
-
-      {/* Tarjeta Florencia */}
+      {/* Asesoramiento personalizado */}
       <FlorenciaCard />
 
-      {/* Últimos testimonios */}
+      {/* Experiencias de nuestros viajeros */}
       <UltimosTestimonios />
 
       {/* Ofertas aéreas */}

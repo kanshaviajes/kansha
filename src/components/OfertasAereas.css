@@ -1,18 +1,323 @@
-.oferta-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+/* =========================================
+   KANSHA VIAJES - OFERTAS AÉREAS
+========================================= */
+
+.ofertas-aereas {
+  position: relative;
+  padding: 95px 0 105px;
+  background: #f7f8f3;
+  border-top: 3px solid #ffde59;
 }
 
-.oferta-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.1) !important;
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.ofertas-aereas-header {
+  max-width: 760px;
+  margin: 0 auto 50px;
+  text-align: center;
 }
 
-.oferta-img {
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+.ofertas-aereas-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: #08714d;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
 }
 
-.oferta-card:hover .oferta-img {
-    transform: scale(1.08);
+.ofertas-aereas-header h2 {
+  margin: 0 0 22px;
+  color: #06402b;
+  font-size: clamp(38px, 4.8vw, 62px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.7px;
+}
+
+.ofertas-aereas-header h2 span {
+  color: #08714d;
+}
+
+.ofertas-aereas-header p {
+  max-width: 580px;
+  margin: 0 auto;
+  color: #627168;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   GRILLA
+========================================= */
+
+.ofertas-aereas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 26px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   TARJETAS
+========================================= */
+
+.ofertas-aereas-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #e8eee8;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 12px 35px rgba(6, 64, 43, 0.07);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ofertas-aereas-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 22px 45px rgba(6, 64, 43, 0.13);
+}
+
+/* =========================================
+   FOTOGRAFÍAS
+========================================= */
+
+.ofertas-aereas-imagen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #e5eee8;
+}
+
+.ofertas-aereas-imagen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.ofertas-aereas-card:hover
+.ofertas-aereas-imagen img {
+  transform: scale(1.06);
+}
+
+/* =========================================
+   CATEGORÍA
+========================================= */
+
+.ofertas-aereas-categoria {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  max-width: calc(100% - 34px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #ffde59;
+  color: #06402b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   CONTENIDO
+========================================= */
+
+.ofertas-aereas-contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 27px;
+}
+
+.ofertas-aereas-contenido h3 {
+  margin: 0 0 15px;
+  color: #06402b;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* =========================================
+   DESCRIPCIÓN LIMITADA A 6 LÍNEAS
+========================================= */
+
+.ofertas-aereas-descripcion {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: normal;
+
+  margin: 0 0 25px;
+  color: #637168;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* =========================================
+   PRECIO Y BOTÓN
+========================================= */
+
+.ofertas-aereas-pie {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #edf1ed;
+}
+
+.ofertas-aereas-precio {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ofertas-aereas-precio > span {
+  color: #8a968d;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ofertas-aereas-precio strong {
+  color: #08714d;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* =========================================
+   BOTÓN CONSULTAR - WHATSAPP
+========================================= */
+
+.ofertas-aereas-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 19px;
+  border-radius: 999px;
+  background: #ffde59;
+  color: #06402b;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ofertas-aereas-boton:hover {
+  background: #06402b;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.ofertas-aereas-boton:focus-visible {
+  outline: 3px solid #08714d;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 991px) {
+  .ofertas-aereas {
+    padding: 80px 0 90px;
+  }
+
+  .ofertas-aereas-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .ofertas-aereas-header {
+    margin-bottom: 40px;
+  }
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 575px) {
+  .ofertas-aereas {
+    padding: 70px 0 80px;
+  }
+
+  .ofertas-aereas-header {
+    margin-bottom: 35px;
+  }
+
+  .ofertas-aereas-eyebrow {
+    font-size: 10px;
+  }
+
+  .ofertas-aereas-header h2 {
+    font-size: clamp(36px, 9vw, 48px);
+  }
+
+  .ofertas-aereas-header p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .ofertas-aereas-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .ofertas-aereas-contenido {
+    padding: 24px;
+  }
+
+  .ofertas-aereas-contenido h3 {
+    font-size: 21px;
+  }
+
+  .ofertas-aereas-precio strong {
+    font-size: 23px;
+  }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ofertas-aereas-card,
+  .ofertas-aereas-imagen img,
+  .ofertas-aereas-boton {
+    transition: none;
+  }
+
+  .ofertas-aereas-card:hover,
+  .ofertas-aereas-card:hover
+  .ofertas-aereas-imagen img,
+  .ofertas-aereas-boton:hover {
+    transform: none;
+  }
 }

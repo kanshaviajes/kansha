@@ -1,53 +1,176 @@
+
 import { useEffect, useState } from "react";
-import { getImagenesPorSeccion } from "../components/ImagenesWebService";
-import "./OfertasAereas.css"; // Para estilos personalizados
+import { getImagenesPorSeccion } from "./ImagenesWebService";
+import "./OfertasAereas.css";
+
+// =========================================
+// CONFIGURACIÓN
+// =========================================
+
+const WHATSAPP_KANSHA = "59891846311";
+const LIMITE_OFERTAS = 6;
+
+// =========================================
+// ENLACE PERSONALIZADO DE WHATSAPP
+// =========================================
+
+function crearLinkWhatsApp(oferta) {
+  const titulo =
+    String(oferta.titulo || "").trim() ||
+    "un viaje";
+
+  const precio = oferta.precio
+    ? ` (${oferta.precio})`
+    : "";
+
+  const mensaje =
+    `¡Hola, Florencia! 👋\n\n` +
+    `Vi en la web de Kansha la oferta de ${titulo}${precio} ` +
+    `y me gustaría recibir más información.\n\n` +
+    `¡Muchas gracias!`;
+
+  return `https://wa.me/${WHATSAPP_KANSHA}?text=${encodeURIComponent(
+    mensaje
+  )}`;
+}
+
+// =========================================
+// COMPONENTE
+// =========================================
 
 function OfertasAereas() {
   const [ofertas, setOfertas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    cargar();
+    let activo = true;
+
+    async function cargarOfertas() {
+      try {
+        const data = await getImagenesPorSeccion(
+          "ofertas_aereas"
+        );
+
+        const ofertasRecientes = (data || [])
+          .filter(
+            (oferta) =>
+              oferta.activo !== false &&
+              oferta.imagen_url
+          )
+          .sort(
+            (a, b) =>
+              new Date(b.created_at || 0).getTime() -
+              new Date(a.created_at || 0).getTime()
+          )
+          .slice(0, LIMITE_OFERTAS);
+
+        if (activo) {
+          setOfertas(ofertasRecientes);
+        }
+      } catch (error) {
+        console.error(
+          "Error cargando ofertas aéreas:",
+          error
+        );
+      } finally {
+        if (activo) {
+          setLoading(false);
+        }
+      }
+    }
+
+    cargarOfertas();
+
+    return () => {
+      activo = false;
+    };
   }, []);
 
-  async function cargar() {
-    const data = await getImagenesPorSeccion("ofertas_aereas");
-    setOfertas(data || []);
+  if (loading || ofertas.length === 0) {
+    return null;
   }
 
   return (
-    <section className="py-5">
+    <section
+      className="ofertas-aereas"
+      aria-labelledby="ofertas-aereas-title"
+    >
       <div className="container">
-        <h3 className="mb-4 text-center">Septiembre Increíble</h3>
-        <div className="row g-4">
+        <header className="ofertas-aereas-header">
+          <span className="ofertas-aereas-eyebrow">
+            OFERTAS ESPECIALES
+          </span>
+
+          <h2 id="ofertas-aereas-title">
+            Oportunidades para{" "}
+            <span>despegar.</span>
+          </h2>
+
+          <p>
+            Descubrí propuestas especiales para tu
+            próximo viaje. Elegí tu destino y empezá
+            a planificar una nueva aventura.
+          </p>
+        </header>
+
+        <div className="ofertas-aereas-grid">
           {ofertas.map((oferta) => (
-            <div className="col-md-4" key={oferta.id}>
-              <div className="card h-100 border-0 shadow-sm rounded-4 oferta-card">
-                <div className="overflow-hidden rounded-top-4">
-                  <img
-                    src={oferta.imagen_url}
-                    alt={oferta.titulo}
-                    className="card-img-top oferta-img"
-                  />
-                </div>
-                <div className="card-body d-flex flex-column">
-                  {oferta.categoria && (
-                    <span className="badge bg-light text-dark mb-2 align-self-start">
-                      {oferta.categoria}
-                    </span>
-                  )}
-                  <h5 className="card-title">{oferta.titulo}</h5>
-                  <p className="card-text text-muted small flex-grow-1">
+            <article
+              className="ofertas-aereas-card"
+              key={oferta.id}
+            >
+              <div className="ofertas-aereas-imagen">
+                <img
+                  src={oferta.imagen_url}
+                  alt={
+                    oferta.titulo ||
+                    "Oferta de Kansha Viajes"
+                  }
+                  loading="lazy"
+                />
+
+                {oferta.categoria && (
+                  <span className="ofertas-aereas-categoria">
+                    {oferta.categoria}
+                  </span>
+                )}
+              </div>
+
+              <div className="ofertas-aereas-contenido">
+                <h3>
+                  {oferta.titulo ||
+                    "Descubrí esta oferta"}
+                </h3>
+
+                {oferta.descripcion && (
+                  <p className="ofertas-aereas-descripcion">
                     {oferta.descripcion}
                   </p>
-                  <div className="d-flex justify-content-between align-items-center mt-3">
-                    <h4 className="mb-0 text-primary fw-bold">{oferta.precio}</h4>
-                    <button className="btn btn-outline-dark btn-sm rounded-pill">
-                      Reservar
-                    </button>
+                )}
+
+                <div className="ofertas-aereas-pie">
+                  <div className="ofertas-aereas-precio">
+                    <span>Precio</span>
+                    <strong>
+                      {oferta.precio || "Consultar"}
+                    </strong>
                   </div>
+
+                  <a
+                    href={crearLinkWhatsApp(oferta)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ofertas-aereas-boton"
+                    aria-label={`Consultar por WhatsApp sobre ${
+                      oferta.titulo || "esta oferta"
+                    }`}
+                  >
+                    Consultar
+                    <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

@@ -1,158 +1,293 @@
-.footer{
 
-    margin-top:80px;
-    padding:40px 0;
+/* =========================================
+   KANSHA VIAJES - FOOTER
+========================================= */
 
-    background: #FDF2D0;
-
-    border-top:1px solid #E7E2DB;
-
+.footer {
+  position: relative;
+  margin-top: 0;
+  padding: 85px 0 0;
+  background: #043524;
+  color: #ffffff;
+  border-top: 3px solid #ffde59;
 }
 
-.footer-grid{
-
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-
-    align-items:center;
-
-}
-
-.footer-logo img{
-
-    width:170px;
-
-}
-
-.footer-center{
-
-    text-align:center;
-
-}
-
-.footer-center a{
-
-    color:#555;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    display:block;
-
-    margin-bottom:10px;
-
-}
-
-.footer-center i{
-
-    color:#5DB7A3;
-
-    margin-right:8px;
-
-}
-
-.footer-social{
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    gap:18px;
-
-}
-
-.footer-social a{
-
-    color:#555;
-
-    font-size:1.3rem;
-
-    transition:.3s;
-
-}
-
-.footer-social a:hover{
-
-    color:#5DB7A3;
-
-}
-
-.admin-link{
-
-    opacity:.45;
-
-}
-
-.admin-link:hover{
-
-    opacity:1;
-
-}
-
-@media(max-width:768px){
-
-.footer-grid{
-
-    grid-template-columns:1fr;
-
-    gap:30px;
-
-    text-align:center;
-
-}
-
-.footer-logo{
-
-    text-align:center;
-
-}
-
-.footer-social{
-
-    justify-content:center;
-
-}
-
-}
 .footer-grid {
   display: grid;
-  /* Cambiamos de 3 columnas a 4 */
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px;
-  align-items: center;
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(0, 0.8fr)
+    minmax(0, 1.1fr)
+    minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(25px, 3vw, 50px);
+  padding-bottom: 75px;
 }
 
-/* Si en móvil se rompe, forzamos que sea una sola columna */
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
+/* =========================================
+   LOGO E IDENTIDAD
+========================================= */
+
+.footer-brand {
+  min-width: 0;
 }
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr) !important; /* Fuerza 4 columnas */
-  gap: 15px;
+
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.footer-logo img {
+  display: block;
+  width: 170px;
+  max-width: 100%;
+  height: auto;
+}
+
+.footer-brand-description {
+  max-width: 270px;
+  margin: 0 0 25px;
+  color: rgba(255, 255, 255, 0.73);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.footer-location {
+  display: flex;
   align-items: center;
+  gap: 10px;
+  color: #ffde59;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* =========================================
+   TÍTULOS DE COLUMNAS
+========================================= */
+
+.footer h3 {
+  margin: 0 0 25px;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+/* =========================================
+   NAVEGACIÓN
+========================================= */
+
+.footer-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.footer-navigation h3 {
+  margin-bottom: 9px;
+}
+
+.footer-navigation a {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-navigation a:hover {
+  color: #ffde59;
+  transform: translateX(4px);
+}
+
+/* =========================================
+   CONTACTO
+========================================= */
+
+.footer-contact {
+  min-width: 0;
+}
+
+.footer-contact > p {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.footer-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 17px;
+  border-radius: 999px;
+  background: #ffde59;
+  color: #06402b;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-whatsapp:hover {
+  background: #ffffff;
+  color: #06402b;
+  transform: translateY(-3px);
+}
+
+.footer-phone {
+  display: block;
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.footer-mapa {
+  display: block;
+  width: 130px;
+  max-width: 100%;
+  height: auto;
+  margin-top: 25px;
+  opacity: 0.85;
+}
+
+/* =========================================
+   CONVERSOR
+========================================= */
+
+.footer-converter {
+  min-width: 0;
+}
+
+.footer-converter > p {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.73);
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 .footer-converter-wrapper {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+  width: 100%;
+  min-width: 0;
 }
-/* Esto hace que el footer se adapte automáticamente */
-@media (max-width: 900px) {
+
+/* =========================================
+   FRANJA INFERIOR
+========================================= */
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-social a {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-social a:hover {
+  color: #ffde59;
+}
+
+.footer-social .admin-link {
+  opacity: 0.55;
+}
+
+.footer-social .admin-link:hover {
+  opacity: 1;
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+.footer a:focus-visible {
+  outline: 3px solid #ffde59;
+  outline-offset: 5px;
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 1100px) {
   .footer-grid {
-    /* En móviles, obligamos a que todo se apile en una sola columna */
-    grid-template-columns: 1fr !important;
-    gap: 30px; /* Más espacio entre elementos en vertical */
-    text-align: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 55px;
+    row-gap: 50px;
+  }
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 650px) {
+  .footer {
+    padding-top: 65px;
   }
 
-  /* Ajustamos el conversor para que no sea muy ancho en celular */
-  .footer-converter-wrapper {
-    max-width: 300px;
-    margin: 0 auto; /* Centra el cuadrito */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding-bottom: 55px;
+  }
+
+  .footer-brand-description {
+    max-width: 420px;
+  }
+
+  .footer-navigation {
+    gap: 15px;
+  }
+
+  .footer-mapa {
+    width: 110px;
+  }
+
+  .footer-converter {
+    max-width: 420px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+/* =========================================
+   MOVIMIENTO REDUCIDO
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-navigation a,
+  .footer-whatsapp,
+  .footer-social a {
+    transition: none;
   }
 }

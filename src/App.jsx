@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import {
   useLocation,
@@ -19,6 +20,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import PageDestino from "./pages/PageDestino";
+import Viajes from "./pages/Viajes";
 import Testimonios from "./pages/Testimonios";
 import Documentos from "./pages/Documentos";
 
@@ -84,38 +86,31 @@ function App() {
 
       <main>
         <Routes>
-
-          {/* ==================================================
-              HOME
-          ================================================== */}
-
+          {/* HOME */}
           <Route
             path="/"
             element={<Home />}
           />
 
-          {/* ==================================================
-              LOGIN
-          ================================================== */}
+          {/* CATÁLOGO PÚBLICO DE VIAJES */}
+          <Route
+            path="/viajes"
+            element={<Viajes />}
+          />
 
+          {/* LOGIN */}
           <Route
             path="/login"
             element={<Login />}
           />
 
-          {/* ==================================================
-              ADMIN
-          ================================================== */}
-
+          {/* ADMIN */}
           <Route
             path="/admin"
             element={<Admin />}
           />
 
-          {/* ==================================================
-              COTIZABLES
-          ================================================== */}
-
+          {/* COTIZABLES */}
           <Route
             path="/admin/cotizables"
             element={<Cotizables />}
@@ -131,10 +126,7 @@ function App() {
             element={<EditarCotizable />}
           />
 
-          {/* ==================================================
-              COTIZACIONES
-          ================================================== */}
-
+          {/* COTIZACIONES */}
           <Route
             path="/admin/cotizaciones"
             element={<MisCotizaciones />}
@@ -150,46 +142,31 @@ function App() {
             element={<EditarCotizacion />}
           />
 
-          {/* ==================================================
-              COTIZACIÓN PÚBLICA
-          ================================================== */}
-
+          {/* COTIZACIÓN PÚBLICA */}
           <Route
             path="/cotizacion/:token"
             element={<CotizacionPublica />}
           />
 
-          {/* ==================================================
-              DOCUMENTOS / RECIBOS
-          ================================================== */}
-
+          {/* DOCUMENTOS / RECIBOS */}
           <Route
             path="/documentos"
             element={<Documentos />}
           />
 
-          {/* ==================================================
-              VOUCHER HOTEL
-          ================================================== */}
-
+          {/* VOUCHER HOTEL */}
           <Route
             path="/admin/voucher-hotel"
             element={<VoucherHotel />}
           />
 
-          {/* ==================================================
-              VOUCHER SERVICIOS OPCIONALES
-          ================================================== */}
-
+          {/* VOUCHER SERVICIOS OPCIONALES */}
           <Route
             path="/admin/voucher-opcionales"
             element={<VoucherOpcionales />}
           />
 
-          {/* ==================================================
-              HOJAS DE VIAJE
-          ================================================== */}
-
+          {/* HOJAS DE VIAJE */}
           <Route
             path="/admin/hojas-viaje"
             element={<HojasViaje />}
@@ -205,24 +182,17 @@ function App() {
             element={<EditarHojaViaje />}
           />
 
-          {/* ==================================================
-              TESTIMONIOS
-          ================================================== */}
-
+          {/* TESTIMONIOS */}
           <Route
             path="/testimonios"
             element={<Testimonios />}
           />
 
-          {/* ==================================================
-              DESTINO
-          ================================================== */}
-
+          {/* DETALLE DE DESTINO */}
           <Route
             path="/destino/:id"
             element={<PageDestino />}
           />
-
         </Routes>
       </main>
 

@@ -1,0 +1,298 @@
+
+/* =========================================
+   KANSHA - TU PRÓXIMA AVENTURA
+========================================= */
+
+.destacados {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: 100px 0;
+
+  background-color: #123e52;
+  border-top: 3px solid #ffde59;
+
+  /* Cielo con filtro verde Kansha */
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(0, 39, 35, 0.68) 0%,
+      rgba(0, 47, 42, 0.42) 48%,
+      rgba(0, 38, 35, 0.18) 100%
+    ),
+    url("/cielo-kansha.png");
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.destacados::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 24, 38, 0.03),
+    rgba(0, 20, 31, 0.15)
+  );
+  pointer-events: none;
+}
+
+.destacados-container {
+  position: relative;
+  z-index: 1;
+}
+
+.destacados-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1.6fr);
+  align-items: center;
+  gap: clamp(35px, 5vw, 90px);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   COLUMNA DE TEXTO
+========================================= */
+
+.destacados-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.destacados-eyebrow {
+  display: block;
+  margin-bottom: 20px;
+  color: #ffde59;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+}
+
+.destacados-title {
+  max-width: 550px;
+  margin: 0 0 25px;
+  color: #ffffff;
+  font-size: clamp(36px, 4vw, 64px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1.8px;
+  text-wrap: balance;
+}
+
+.destacados-description {
+  max-width: 420px;
+  margin: 0 0 30px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.destacados-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 15px 25px;
+  border-radius: 999px;
+  background: #ffde59;
+  color: #06402b;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.destacados-button:hover {
+  background: #ffffff;
+  color: #06402b;
+  transform: translateY(-3px);
+}
+
+.destacados-button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   AVIONCITO DECORATIVO
+========================================= */
+
+.destacados-decoracion {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 180px;
+  margin-top: 55px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.destacados-decoracion span:first-child {
+  font-size: 30px;
+  transform: rotate(-20deg);
+}
+
+.destacados-linea {
+  flex: 1;
+  height: 1px;
+  border-top: 2px dashed rgba(255, 255, 255, 0.45);
+}
+
+/* =========================================
+   GRILLA DE AFICHES
+========================================= */
+
+.destacados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  min-width: 0;
+  scroll-margin-top: 110px;
+}
+
+.destacados-link {
+  display: block;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.destacados-card {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.destacados-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.destacados-link[href]:hover .destacados-card {
+  transform: translateY(-7px) scale(1.015);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.32);
+}
+
+.destacados-link[href]:focus-visible {
+  outline: 3px solid #ffde59;
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 991px) {
+  .destacados {
+    padding: 75px 0;
+  }
+
+  .destacados-layout {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .destacados-header {
+    max-width: 680px;
+  }
+
+  .destacados-title {
+    font-size: clamp(36px, 6vw, 56px);
+  }
+
+  .destacados-decoracion {
+    margin-top: 30px;
+  }
+
+  .destacados-grid {
+    max-width: 850px;
+  }
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 575px) {
+  .destacados {
+    padding: 65px 0;
+    background-position: 43% center;
+  }
+
+  .destacados-layout {
+    gap: 35px;
+  }
+
+  .destacados-eyebrow {
+    font-size: 10px;
+    margin-bottom: 15px;
+  }
+
+  .destacados-title {
+    font-size: clamp(34px, 9vw, 45px);
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+  }
+
+  .destacados-description {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+  }
+
+  .destacados-button {
+    padding: 14px 22px;
+    font-size: 13px;
+  }
+
+  .destacados-decoracion {
+    display: none;
+  }
+
+  .destacados-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .destacados-card {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .destacados-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .destacados-card,
+  .destacados-button {
+    transition: none;
+  }
+}

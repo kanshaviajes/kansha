@@ -1,0 +1,210 @@
+
+/* =========================================
+   KANSHA - CATÁLOGO DE VIAJES
+========================================= */
+
+.viajes-page {
+  min-height: 100vh;
+  background: #f7f9f8;
+}
+
+.viajes-hero {
+  position: relative;
+  padding: 165px 0 95px;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(0, 39, 35, 0.88),
+      rgba(0, 47, 42, 0.48)
+    ),
+    url("/cielo-kansha.png");
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  border-bottom: 3px solid #ffde59;
+}
+
+.viajes-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: #ffde59;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.viajes-hero h1 {
+  max-width: 750px;
+  margin: 0 0 20px;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+}
+
+.viajes-hero p {
+  max-width: 580px;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.viajes-catalogo {
+  padding: 75px 0 100px;
+}
+
+.viajes-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.viajes-toolbar h2 {
+  margin: 0 0 8px;
+  color: #06402b;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 800;
+}
+
+.viajes-toolbar p {
+  margin: 0;
+  color: #6c7772;
+  font-size: 14px;
+}
+
+.viajes-buscador {
+  position: relative;
+  width: 100%;
+  max-width: 330px;
+}
+
+.viajes-buscador input {
+  width: 100%;
+  padding: 14px 45px 14px 18px;
+  border: 1px solid #dce5df;
+  border-radius: 50px;
+  background: #fff;
+  color: #183b2c;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.viajes-buscador input:focus {
+  border-color: #08724d;
+  box-shadow: 0 0 0 3px rgba(8, 114, 77, 0.12);
+}
+
+.viajes-buscador > span:last-child {
+  position: absolute;
+  top: 50%;
+  right: 17px;
+  transform: translateY(-50%);
+  color: #08724d;
+  font-size: 27px;
+  pointer-events: none;
+}
+
+.viajes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.viajes-card-link {
+  display: block;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.viajes-card {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 17px;
+  background: #e7eee9;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.viajes-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.viajes-card-link[href]:hover .viajes-card {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+}
+
+.viajes-card-link[href]:focus-visible {
+  outline: 3px solid #ffde59;
+  outline-offset: 5px;
+  border-radius: 17px;
+}
+
+.viajes-estado,
+.viajes-vacio {
+  padding: 65px 20px;
+  text-align: center;
+  color: #68756d;
+}
+
+.viajes-vacio h3 {
+  color: #06402b;
+  font-weight: 700;
+}
+
+@media (max-width: 1199px) {
+  .viajes-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .viajes-hero {
+    padding: 135px 0 70px;
+  }
+
+  .viajes-catalogo {
+    padding: 55px 0 75px;
+  }
+
+  .viajes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .viajes-buscador {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .viajes-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .viajes-hero p {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viajes-card {
+    transition: none;
+  }
+}

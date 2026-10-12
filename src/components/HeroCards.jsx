@@ -1,66 +1,104 @@
+
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "./HeroCards.css";
-import CardItem from "./CardItem"; 
+import { Link } from "react-router-dom";
 import { getImagenesPorSeccion } from "./ImagenesWebService";
+import "./HeroCards.css";
+
+const CANTIDAD_DESTACADOS = 6;
 
 function HeroCards() {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let activo = true;
+
+    async function cargarCards() {
+      try {
+        const data = await getImagenesPorSeccion("hero_cards");
+
+        const recientes = (data || [])
+          .filter(
+            (card) =>
+              card.activo !== false &&
+              card.imagen_url
+          )
+          .sort(
+            (a, b) =>
+              new Date(b.created_at || 0).getTime() -
+              new Date(a.created_at || 0).getTime()
+          )
+          .slice(0, CANTIDAD_DESTACADOS);
+
+        if (activo) {
+          setCards(recientes);
+        }
+      } catch (error) {
+        console.error(
+          "Error cargando destinos destacados:",
+          error
+        );
+      } finally {
+        if (activo) {
+          setLoading(false);
+        }
+      }
+    }
+
     cargarCards();
+
+    return () => {
+      activo = false;
+    };
   }, []);
 
-  async function cargarCards() {
-    try {
-      const data = await getImagenesPorSeccion("hero_cards");
-      setCards(data || []);
-    } catch (error) {
-      console.error("Error cargando Hero Cards:", error);
-    } finally {
-      setLoading(false);
-    }
+  if (loading || cards.length === 0) {
+    return null;
   }
-
-  if (loading) {
-    return (
-      <section className="hero-cards">
-        <div className="container text-center py-5">
-        </div>
-      </section>
-    );
-  }
-
-  if (cards.length === 0) return null;
 
   return (
     <section className="hero-cards">
       <div className="container">
-        <Swiper
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          grabCursor={true}
-          spaceBetween={25}
-          breakpoints={{
-            0: { slidesPerView: 1.15, spaceBetween: 15 },
-            576: { slidesPerView: 1.6, spaceBetween: 18 },
-            768: { slidesPerView: 2.2, spaceBetween: 20 },
-            992: { slidesPerView: 3, spaceBetween: 22 },
-            1200: { slidesPerView: 4, spaceBetween: 25 },
-            1600: { slidesPerView: 4.5, spaceBetween: 25 },
-          }}
-        >
-          {cards.map((card) => (
-            <SwiperSlide key={card.id}>
-              {/* Pasamos la tarjeta completa al componente hijo */}
-              <CardItem card={card} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="hero-cards-grid">
+          {cards.map((card) => {
+            const tieneLink =
+              card.link !== null &&
+              card.link !== undefined &&
+              String(card.link).trim() !== "";
+
+            const imagen = (
+              <div className="hero-cards-item">
+                <img
+                  src={card.imagen_url}
+                  alt={card.titulo || "Promoción de Kansha Viajes"}
+                  loading="lazy"
+                />
+              </div>
+            );
+
+            return tieneLink ? (
+              <Link
+                key={card.id}
+                to={`/destino/${card.link}`}
+                className="hero-cards-link"
+                aria-label={
+                  card.titulo
+                    ? `Ver viaje a ${card.titulo}`
+                    : "Ver promoción"
+                }
+              >
+                {imagen}
+              </Link>
+            ) : (
+              <div
+                key={card.id}
+                className="hero-cards-link"
+              >
+                {imagen}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
