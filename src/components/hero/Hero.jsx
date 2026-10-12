@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -72,6 +72,10 @@ function Hero() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const swiperRef = useRef(null);
+  const [progreso, setProgreso] = useState(0);
+  const [puedeDeslizar, setPuedeDeslizar] = useState(false);
+
   useEffect(() => {
     let montado = true;
 
@@ -103,6 +107,35 @@ function Hero() {
     };
   }, []);
 
+  const actualizarProgreso = (swiper) => {
+    if (!swiper || swiper.destroyed) return;
+
+    setProgreso(
+      Math.max(0, Math.min(1, swiper.progress || 0))
+    );
+
+    setPuedeDeslizar(!swiper.isLocked);
+  };
+
+  const moverCarrusel = (evento) => {
+    const swiper = swiperRef.current;
+
+    if (!swiper || swiper.destroyed) return;
+
+    const valor = Number(evento.target.value) / 1000;
+
+    swiper.translateTo(
+      swiper.minTranslate() +
+        (swiper.maxTranslate() - swiper.minTranslate()) *
+          valor,
+      0,
+      true
+    );
+
+    swiper.updateProgress();
+    setProgreso(valor);
+  };
+
   const destinoActivo =
     destinos.find((destino) => destino.id === destinoActivoId) ||
     null;
@@ -125,7 +158,10 @@ function Hero() {
       aria-label="Destinos destacados de Kansha Viajes"
     >
       {/* Fondos panorámicos */}
-      <div className="kansha-hero__backgrounds" aria-hidden="true">
+      <div
+        className="kansha-hero__backgrounds"
+        aria-hidden="true"
+      >
         {destinos.map((destino) => (
           <div
             key={destino.id}
@@ -141,7 +177,10 @@ function Hero() {
         ))}
       </div>
 
-      <div className="kansha-hero__overlay" aria-hidden="true" />
+      <div
+        className="kansha-hero__overlay"
+        aria-hidden="true"
+      />
 
       <div className="kansha-hero__layout">
         {/* Información principal */}
@@ -150,12 +189,17 @@ function Hero() {
             DESCUBRÍ TU PRÓXIMO DESTINO
           </span>
 
-          <div className="kansha-hero__info" key={destinoActivo.id}>
+          <div
+            className="kansha-hero__info"
+            key={destinoActivo.id}
+          >
             <h1>{destinoActivo.nombre}</h1>
 
             {destinoActivo.descripcion && (
               <p className="kansha-hero__description">
-                {resumirDescripcion(destinoActivo.descripcion)}
+                {resumirDescripcion(
+                  destinoActivo.descripcion
+                )}
               </p>
             )}
 
@@ -169,7 +213,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* Carrusel extendido hacia el borde derecho */}
+        {/* Carrusel de destinos */}
         <div className="kansha-hero__showcase">
           <Swiper
             className="kansha-hero__swiper"
@@ -182,6 +226,19 @@ function Hero() {
             resistanceRatio={0.65}
             speed={550}
             watchOverflow
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              actualizarProgreso(swiper);
+            }}
+            onProgress={(swiper) => {
+              actualizarProgreso(swiper);
+            }}
+            onResize={(swiper) => {
+              actualizarProgreso(swiper);
+            }}
+            onUpdate={(swiper) => {
+              actualizarProgreso(swiper);
+            }}
             aria-label="Deslizá para descubrir destinos"
           >
             {destinos.map((destino) => (
@@ -196,8 +253,12 @@ function Hero() {
                       ? "kansha-hero__card--active"
                       : ""
                   }`}
-                  onClick={() => setDestinoActivoId(destino.id)}
-                  aria-pressed={destinoActivoId === destino.id}
+                  onClick={() =>
+                    setDestinoActivoId(destino.id)
+                  }
+                  aria-pressed={
+                    destinoActivoId === destino.id
+                  }
                   aria-label={`Seleccionar ${destino.nombre}`}
                 >
                   <img
@@ -223,6 +284,20 @@ function Hero() {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Barra horizontal arrastrable */}
+          {puedeDeslizar && (
+            <input
+              type="range"
+              className="kansha-hero__scrollbar"
+              min="0"
+              max="1000"
+              step="1"
+              value={Math.round(progreso * 1000)}
+              onChange={moverCarrusel}
+              aria-label="Desplazar horizontalmente los destinos"
+            />
+          )}
         </div>
       </div>
     </section>

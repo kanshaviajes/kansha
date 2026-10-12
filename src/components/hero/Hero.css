@@ -71,7 +71,9 @@
   height: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1.1fr);
   align-items: center;
   gap: clamp(35px, 4vw, 70px);
   padding: 120px 0 55px;
@@ -160,6 +162,68 @@
 .kansha-hero__slide {
   width: clamp(195px, 14.5vw, 235px) !important;
   height: clamp(345px, 28vw, 405px);
+}
+
+/* =========================================
+   BARRA DE DESPLAZAMIENTO HORIZONTAL
+========================================= */
+
+.kansha-hero__scrollbar {
+  display: block;
+  width: min(100%, 440px);
+  height: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.kansha-hero__scrollbar::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.kansha-hero__scrollbar::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.kansha-hero__scrollbar::-webkit-slider-thumb {
+  width: 80px;
+  height: 8px;
+  margin-top: 0;
+  border: none;
+  border-radius: 999px;
+  background: #ffde59;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: grab;
+  box-shadow: 0 0 12px rgba(255, 222, 89, 0.25);
+}
+
+.kansha-hero__scrollbar::-moz-range-thumb {
+  width: 80px;
+  height: 8px;
+  border: none;
+  border-radius: 999px;
+  background: #ffde59;
+  cursor: grab;
+}
+
+.kansha-hero__scrollbar:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+.kansha-hero__scrollbar:focus-visible {
+  outline: 3px solid #ffde59;
+  outline-offset: 6px;
 }
 
 /* TARJETAS */
@@ -284,7 +348,9 @@
 
 @media (max-width: 1100px) {
   .kansha-hero__layout {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-columns:
+      minmax(0, 0.85fr)
+      minmax(0, 1.15fr);
     gap: 28px;
   }
 
@@ -336,6 +402,11 @@
       rgba(0, 17, 15, 0.85),
       rgba(0, 17, 15, 0.42)
     );
+  }
+
+  .kansha-hero__scrollbar {
+    width: min(100%, 360px);
+    height: 6px;
   }
 }
 
@@ -398,6 +469,11 @@
 
   .kansha-hero__card-subtitle {
     font-size: 0.7rem;
+  }
+
+  .kansha-hero__scrollbar {
+    width: calc(100% - 16px);
+    margin-top: 8px;
   }
 }
 
